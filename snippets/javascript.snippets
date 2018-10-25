@@ -1,0 +1,269 @@
+snippet cs
+	var cx = React.addons.classSet
+snippet cdm
+	componentDidMount() {
+		${1}
+	}
+snippet cdu
+	componentDidUpdate(prevProps, prevState) {
+		${1}
+	}
+snippet cwm
+	componentWillMount() {
+		${1}
+	}
+snippet cwrp
+	componentWillReceiveProps(nextProps) {
+		${1}
+	}
+snippet cwun
+	componentWillUnmount() {
+		${1}
+	}
+snippet cwu
+	componentWillUpdate(nextProps, nextState) {
+		${1}
+	}
+snippet cx
+	cx({
+		${1}: ${2}
+	})
+snippet fup
+	forceUpdate(${1:callback})
+snippet gdp
+	getDefaultProps() {
+		return {
+			${1}
+		}
+	}
+snippet gis
+	getInitialState() {
+		return {
+			${1}: ${2}
+		}
+	}
+snippet ism
+	isMounted()
+snippet jsx
+	/**
+	 * @jsx React.DOM
+	 */
+snippet pt
+	propTypes: {
+		${1}: React.PropTypes.${2:string}
+	}
+snippet rcc
+	import React, { Component } from 'react'
+	import PropTypes from 'prop-types'
+
+	class ${1:ClassName} extends Component {
+		constructor(props) {
+			super(props)
+			this.state = { ${2} }
+		}
+
+		render() {
+			return (
+				${0:<div />}
+			)
+		}
+	}
+
+	$1.propTypes = {
+	}
+
+	$1.defaultProps = {
+	}
+
+	export default $1
+snippet cc
+	class ${1:ClassName} extends Component {
+
+		render() {
+			return (
+				${0:<div />}
+			)
+		}
+	}
+
+	export const $1 = $1
+snippet slc
+	const ${1:ClassName} = (props) => {
+		return (
+			${0:<div />}
+		)
+	}
+
+	$1.propTypes = {
+
+	}
+snippet rslc
+	import React from 'react'
+	import PropTypes from 'prop-types'
+
+	const ${1:ClassName} = ({ ${2} }) => (
+		${0:<div />}
+	)
+
+	$1.propTypes = {
+	}
+
+	$1.defaultProps = {
+	}
+
+	export default $1
+snippet recc
+	import { connect } from 'react-redux'
+	import React, { Component } from 'react'
+	import PropTypes from 'prop-types'
+
+	import { actions as ${2:}Actions } from '~/state/ducks/$2'
+
+	import ${1:Component} from '.${3:}'
+
+	const mapStateToProps = state => ({
+	})
+
+	const mapDispatchToProps = dispatch => ({
+	})
+
+	class $1Container extends Component {
+		componentDidUpdate(prevProps) {
+		}
+
+		render() {
+			return (
+				<$1 />
+			)
+		}
+	}
+
+	$1Container.propTypes = {
+	}
+
+	$1Container.defaultProps = {
+	}
+
+	export default connect(mapStateToProps, mapDispatchToProps)($1Container)
+snippet rsfc
+	import React, { Component } from 'react'
+	import PropTypes from 'prop-types'
+
+	class ${1:ClassName} extends Component {
+		constructor(props) {
+			super(props)
+			this.state = {${2}}
+		}
+
+		render() {
+			return (
+				${0:<div />}
+			)
+		}
+	}
+
+	$1.propTypes = {
+	}
+
+	$1.defaultProps = {
+	}
+
+	export default $1
+snippet ren
+	render() {
+		return (
+			${1:<div />}
+		)
+	}
+snippet sst
+	setState({
+		${1}: ${2}
+	})
+snippet scu
+	shouldComponentUpdate(nextProps, nextState) {
+		${1}
+	}
+snippet props
+	this.props.${1}
+snippet state
+	this.state.${1}
+snippet trp
+	transferPropsTo(${1})
+snippet stbk
+	import React from 'react'
+	import { storiesOf } from '@storybook/react'
+	import ${1:} from '.'
+
+	storiesOf('${2}$1', module)
+		.add('${3}', () => (
+			<$1 />
+		))
+snippet stof
+		.add('${1}', () => (
+			${0:<div />}
+		))
+snippet stdec
+		.addDecorator()
+snippet imprt
+	import { Link } from 'react-router-dom'
+snippet impmr
+	import { MemoryRouter } from 'react-router'
+snippet stmr
+		.addDecorator(story => (
+			<MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
+		))
+snippet impst
+	import { Provider } from 'react-redux'
+	import configureStore from '~/state/store'
+	import initState from '~/storybook/state'
+snippet stst
+		.addDecorator(story => (
+			<Provider store={configureStore(initState)}>{story()}</Provider>
+		))
+snippet impsc
+	import styled from 'styled-components'
+snippet impff
+	import { Form, Field } from 'react-final-form'
+snippet impbase
+	import ${1:Component} from '~/components/base/$1'
+snippet imppt
+	import PropTypes from 'prop-types'
+snippet pt
+	${1:}.propTypes = {
+	}
+
+	$1.defaultProps = {
+	}
+snippet imptests
+	import React from 'react'
+	import { shallow } from 'enzyme'
+	import ${1:} from '.'
+snippet impstac
+	import { action } from '@storybook/addon-actions'
+snippet imputil
+	import { ${1:} } from '~/utils/${2}'
+snippet implink
+	import { Link } from 'react-router-dom'
+snippet impld
+	import ${1:} from 'lodash/$1'
+snippet impdec
+	import { ${1:} } from '~/storybook/decorators'
+snippet gqls
+	const { gql } = require('apollo-server');
+	const { passToAPI, buildObjectWith } = require('../utils');
+
+	exports.typeDef = gql\`
+		type Query {
+		}
+
+		type Mutation {
+		}
+	\`;
+
+	exports.resolver = {
+	};
+snippet req
+	const ${1:} = require('./$1');
+snippet impgql
+	import gql from 'graphql-tag'
+	import { Query } from 'react-apollo'

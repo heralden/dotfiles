@@ -1,0 +1,27 @@
+#! /bin/sh
+
+bspc config normal_border_color "#4a4a4a"
+bspc config focused_border_color "#f44242"
+
+bspc config border_width 	2
+bspc config window_gap		12
+bspc config top_padding		25
+
+bspc config click_to_focus  true
+
+bspc config split_ratio		0.52
+bspc config focus_by_distance	true
+
+bspc monitor ^1 -d I II III IV V VI
+bspc monitor ^2 -d I II III IV V VI
+bspc monitor ^3 -d I II III IV V VI
+
+bspc rule -a Kodi monitor=^2 follow=off fullscreen=on
+bspc rule -a scummvm floating=on fullscreen=off
+bspc rule -a pcsxr monitor=^2 fullscreen=on
+bspc rule -a nitrogen floating=on
+bspc rule -a VirtualBox monitor=^2 fullscreen=on
+bspc rule -a xcalc floating=on
+bspc rule -a skype floating=on fullscreen=off
+bspc rule -a org-igoweb-cgoban-CGoban floating=on border=off
+bspc rule -a sfml floating=on center=on

@@ -1,0 +1,132 @@
+#!/usr/bin/env sh
+
+# bspwm hotkeys
+
+super + alt + Escape
+	bspc quit
+
+super + {h,j,k,l}
+	bspc node -f {west,south,north,east}
+super + alt + {h,j,k,l}
+	bspc node -s {west,south,north,east}
+
+super + ctrl + {h,j,k,l}
+  bspc node {@west -r -10, @south -r +10, @north -r -10, @east -r +10}
+
+super + ctrl + shift + {h,j,k,l}
+  bspc node {@east -r -10, @north -r +10, @south -r -10, @west -r +10}
+
+super + x ; super + {h,j,k,l}
+  bspc node -n {west,south,north,east}
+
+super + {w,a,s,d,q}
+	bspc node -p {north,west,south,east,cancel}
+
+super + ctrl + r
+	bspc node -t ~floating
+
+super + {r,t}
+	bspc node -f {next.local.floating,next.local.tiled}
+
+super + m
+	bspc node -s biggest
+
+super + ctrl + f
+	bspc node -t ~fullscreen
+
+super + ctrl + p
+	bspc node -t ~private
+
+super + ctrl + m
+	bspc node -t ~sticky
+
+super + ctrl + s
+	bspc node -t ~pseudo_tiled
+
+super + o
+	bspc node -f last
+
+super + ctrl + w
+	bspc node -c
+
+super + dollar
+	bspc node -k
+
+super + {F1,F2,F3}
+	bspc monitor -f {^1,^3,^2}
+
+super + alt + {F1,F2,F3}
+	bspc node -m {^1,^3,^2}
+
+super + {1-9,0}
+	bspc desktop -f focused:^{1-9,10}
+
+super + alt + {1-9,0}
+	bspc node -d focused:^{1-9,10}
+
+super + {n,p,u,v}
+	bspc monitor -f {east,west,north,south}
+
+super + alt + {n,p,u,v}
+	bspc node -m {east,west,north,south}
+
+super + alt + {x,y}
+	bspc node @/ -F {vertical,horizontal}
+
+super + f
+	bspc desktop -l next
+
+super + {comma,period}
+	bspc node -f {prev.local,next.local}
+
+super + bracket{left,right}
+	bspc desktop -f {prev.local,next.local}
+
+super + alt + bracket{left,right}
+  bspc node -d {prev,next}
+
+super + alt + b
+  bspc node @/ --balance
+
+super + alt + r
+  bspc node @/ -R 90
+
+super + ctrl + {Left,Down,Up,Right}
+        bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+super + ctrl + shift + {Left,Down,Up,Right}
+        bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+super + {Left,Down,Up,Right}
+        bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# other hotkeys
+
+super + shift + End
+	xflock4
+
+super + {c,Return}
+	SHELL=/usr/bin/zsh urxvtc
+
+super + space
+	rofi -show run -monitor -1
+
+# ctrl + alt + space
+#   ~/scripts/toggle-layout.sh
+
+# How to make a chord: super + S ; n
+
+#make sxhkd reload its config files:
+super + R
+	pkill -USR1 -x sxhkd
+
+# emacs editing bindings
+# ctrl + @{a,e,f,b}
+#   xdotool key --clearmodifiers {Home,End,Right,Left}
+# alt + @{f,b}
+#   xdotool key --clearmodifiers ctrl+{Right,Left}
+# alt + @d
+#   xdotool key --clearmodifiers ctrl+shift+Right && xdotool key --clearmodifiers Delete
+# ctrl + @{a,e}
+#   xte "key {Home,End}"
+#https://github.com/baskerville/sxhkd/issues/99

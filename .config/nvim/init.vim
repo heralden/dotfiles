@@ -148,6 +148,8 @@ call plug#begin()
   Plug 'neovimhaskell/haskell-vim'
   " Graphql
   Plug 'jparise/vim-graphql'
+  " IMBA
+  Plug 'simeng/vim-imba'
   " Reason
   Plug 'uosl/vim-reason-plus', {
     \ 'branch': 'fix-indent',

@@ -129,6 +129,8 @@ call plug#begin()
   " HTML
   Plug 'Valloric/MatchTagAlways' "sudo pip install neovim
   Plug 'docunext/closetag.vim'
+  " JSON
+  Plug 'tpope/vim-jdaddy'
   " CSS
   Plug 'cakebaker/scss-syntax.vim'
   Plug 'hail2u/vim-css3-syntax', {

@@ -358,10 +358,10 @@ nnoremap <Leader>gB :Git branch
 nnoremap <Leader>gP :Gpush<CR>
 nnoremap <Leader>gp :Gpull<CR>
 nnoremap <Leader>gr :Gpull --rebase<CR>
-nnoremap <Leader>gSS :Git stash push<CR>
-nnoremap <Leader>gSs :Git stash push -m "
+nnoremap <Leader>gSP :Git stash push<CR>
+nnoremap <Leader>gSp :Git stash push -m "
 nnoremap <Leader>gSl :Git stash list<CR>
-nnoremap <Leader>gSp :Git stash pop<CR>
+nnoremap <Leader>gS<C-p> :Git stash pop<CR>
 nnoremap <Leader>gSa :Git stash apply<CR>
 
 " Navigation
@@ -413,8 +413,8 @@ nnoremap <Leader>d :Bdelete<CR>
 nnoremap <Leader>Q :q<CR>
 
 " Sessions
-nnoremap <Leader><C-s> :mks! ~/.config/nvim/sessions/_quicksave<CR>
-nnoremap <Leader><C-l> :so ~/.config/nvim/sessions/_quicksave<CR>
+nnoremap <Leader><C-s><C-s> :mks! ~/.config/nvim/sessions/_quicksave<CR>
+nnoremap <Leader><C-s><C-l> :so ~/.config/nvim/sessions/_quicksave<CR>
 
 " Quickly open terminal in directory of file
 nnoremap <Leader>C :terminal $SHELL -c "cd `dirname %`; $SHELL"<CR>

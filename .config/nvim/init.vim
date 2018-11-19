@@ -350,14 +350,14 @@ nnoremap <Leader>gD :Git! diff --cached<CR>
 nnoremap <Leader>gL :Glog --<CR>
 nnoremap <Leader>gl :Glog<CR>
 nnoremap <Leader>gb :Gblame<CR>
-nnoremap <Leader>gR :Gread<CR>
 nnoremap <Leader>gW :Gwrite<CR>
 nnoremap <Leader>gm :Gmerge 
+nnoremap <Leader>gr :Grebase 
 nnoremap <Leader>gc :Git checkout 
 nnoremap <Leader>gB :Git branch 
 nnoremap <Leader>gP :Gpush<CR>
 nnoremap <Leader>gp :Gpull<CR>
-nnoremap <Leader>gr :Gpull --rebase<CR>
+nnoremap <Leader>gR :Gpull --rebase<CR>
 nnoremap <Leader>gSP :Git stash push<CR>
 nnoremap <Leader>gSp :Git stash push -m "
 nnoremap <Leader>gSl :Git stash list<CR>

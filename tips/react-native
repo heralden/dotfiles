@@ -1,0 +1,20 @@
+# Setup
+## https://facebook.github.io/react-native/docs/getting-started.html
+
+# Developing
+## With connected android phone (see #More_info for how to enable USB debugging)
+
+yarn
+react-native start --port=8088
+react-native run-android
+adb reverse tcp:8081 tcp:8088
+
+# Release
+## See README.md for ~/.gradle/gradle.properties
+
+cd android && ./gradlew assembleRelease # android/app/build/outputs/apk/app-release.apk
+react-native run-android --variant=release # To test release apk (manually uninstall first)
+
+# More info
+## https://facebook.github.io/react-native/docs/running-on-device.html
+## http://facebook.github.io/react-native/docs/signed-apk-android.html

@@ -1,0 +1,36 @@
+# Set local current directory of window
+:lcd %:h
+
+# Save and close all tabs and quit
+:wqa
+
+# Select region until (excluding) character
+t[motion]
+
+# Grep for files and open quickfix window with results
+:grep -r styled .
+:cw
+
+# Neovim terminal autoscroll
+# Place cursor on last line before switching windows
+
+# Restore different timeline when linear history is overwritten
+:undolist
+g- # go back in time
+g+ # go forward in time
+
+# Paste into vim command line
+:
+<C-r>"
+
+# Incrementing and decrementing numbers
+<C-x>
+<C-a>
+
+# Edit source of recorded macro in register a
+"ap
+[do your editing]
+"ayy
+
+# vim-unimpaired mapping for toggling cursorline and cursorcolumn highlighting
+=ox

@@ -1,0 +1,80 @@
+!-------------------------------------------------------------------------------
+! Xft settings
+!-------------------------------------------------------------------------------
+
+Xft.dpi: 96
+Xft.antialias: true
+Xft.rgba: rgb
+Xft.hinting: true
+Xft.hintstyle: hintslight
+
+!-------------------------------------------------------------------------------
+! URxvt settings
+!-------------------------------------------------------------------------------
+
+URxvt.inputMethod: ibus
+
+URxvt.termName: rxvt-unicode-256color
+
+URxvt.depth: 32
+URxvt.saveLines: 2000
+URxvt.internalBorder: 3
+
+!URxvt.background: #262626
+!URxvt.borderColor: #262626
+
+URxvt.font: xft:monaco:size=10,xft:TakaoPGothic,xft:Noto Sans CJK JP
+URxvt.imFont: xft:monaco:size=10,xft:TakaoPGothic,xft:Noto Sans CJK JP
+
+URxvt.scrollStyle: rxvt
+URxvt.scrollBar: false
+
+URxvt.perl-ext-common: default,matcher,selection-to-clipboard
+URxvt.matcher.button: 1
+URxvt.url-launcher: /usr/bin/chromium
+
+URxvt.cursorBlink: true
+URxvt.cursorUnderline: false
+
+URxvt.pointerBlank: true
+
+! PaperColor Theme
+URxvt.foreground: #4D4D4C
+URxvt.background: #EEEEEE
+URxvt.borderColor: #EEEEEE
+! black
+URxvt.color0: #EDEDED
+URxvt.color8: #969694
+! red
+URxvt.color1: #D7005F
+URxvt.color9: #D7005F
+! green
+URxvt.color2: #718C00
+URxvt.color10: #718C00
+! yellow / orange
+URxvt.color3: #D75F00
+URxvt.color11: #D75F00
+! blue
+URxvt.color4: #4271AE
+URxvt.color12: #4271AE
+! magenta
+URxvt.color5: #8959A8
+URxvt.color13: #8959A8
+! cyan
+URxvt.color6: #3E999F
+URxvt.color14: #3E999F
+! white
+URxvt.color7: #4D4D4C
+URxvt.color15: #F5F5F5
+
+!-------------------------------------------------------------------------------
+! xscreensaver settings
+!-------------------------------------------------------------------------------
+
+xscreensaver.Dialog.headingFont:        -misc-fixed-bold-r-*-*-18-*-*-*-*-*-*-*
+xscreensaver.Dialog.bodyFont:           -misc-fixed-medium-r-*-*-12-*-*-*-*-*-*-*
+xscreensaver.Dialog.labelFont:          -misc-fixed-medium-r-*-*-12-*-*-*-*-*-*-*
+xscreensaver.Dialog.unameFont:          -misc-fixed-medium-r-*-*-12-*-*-*-*-*-*-*
+xscreensaver.Dialog.buttonFont:         -misc-fixed-bold-r-*-*-14-*-*-*-*-*-*-*
+xscreensaver.Dialog.dateFont:           -misc-fixed-medium-r-*-*-10-*-*-*-*-*-*-*
+xscreensaver.passwd.passwdFont:         -misc-fixed-bold-r-*-*-12-*-*-*-*-*-*-*

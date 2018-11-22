@@ -14,7 +14,6 @@ bspc config focus_by_distance	true
 
 bspc monitor ^1 -d I II III IV V VI
 bspc monitor ^2 -d I II III IV V VI
-bspc monitor ^3 -d I II III IV V VI
 
 bspc rule -a Kodi monitor=^2 follow=off fullscreen=on
 bspc rule -a scummvm floating=on fullscreen=off

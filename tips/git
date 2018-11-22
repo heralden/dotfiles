@@ -1,0 +1,42 @@
+# Display creation date of stashes
+git stash list --date=local
+
+# Undo last commit
+git reset HEAD~ # undoes commit and leaves changes unstaged
+git reset --soft HEAD~ # undoes commit but leaves changes staged
+git commit -c ORIG_HEAD # commit by editing resetted commit message
+git commit -C ORIG_HEAD # commit by reusing resetted commit message
+
+# Merge and then delete branch
+git merge source-branch
+git branch -d source-branch
+
+# Fix author info on last commit
+git commit --amend --author="John Doe <john@doe.org>"
+git push -f # if you previously pushed
+
+# Fetch and checkout remote branch
+git fetch --all
+git branch -r # to list all branches
+git checkout -b feature/something origin/feature/something
+
+# Create new commit reverting last commit
+git revert -n HEAD
+git status
+git revert --continue
+
+# Delete remote branch
+git push -d origin target-branch
+
+# List remote branches whether they have been merged, relative to HEAD
+git branch -r --merged # has been merged
+git branch -r --no-merged # has not been merged
+git branch -r --merged master # has been merged relative to master
+
+# Resolve easy/obvious conflicts
+git checkout --ours PATH/FILE # use local version
+git checkout --theirs PATH/FILE # use version to-be-merged
+
+# Replace local commits with remote HEAD
+git fetch origin
+git reset --hard origin/master

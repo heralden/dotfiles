@@ -111,16 +111,30 @@ super + {c,Return}
 super + space
 	rofi -show run -monitor -1
 
+# Right-click for single mouse buttons!
+ctrl + @button1
+  xdotool click 3
+
+super + Pause
+  xscreensaver-command -lock
+
+Print
+  pactl set-sink-mute 0 toggle
+
+Scroll_Lock
+  pactl set-sink-volume 0 -5%
+
+Pause
+  pactl set-sink-volume 0 +5%
+
 # ctrl + alt + space
 #   ~/scripts/toggle-layout.sh
 
-# How to make a chord: super + S ; n
-
-#make sxhkd reload its config files:
+# Make sxhkd reload its config files.
 super + R
 	pkill -USR1 -x sxhkd
 
-# emacs editing bindings
+## emacs editing bindings
 # ctrl + @{a,e,f,b}
 #   xdotool key --clearmodifiers {Home,End,Right,Left}
 # alt + @{f,b}
@@ -129,4 +143,4 @@ super + R
 #   xdotool key --clearmodifiers ctrl+shift+Right && xdotool key --clearmodifiers Delete
 # ctrl + @{a,e}
 #   xte "key {Home,End}"
-#https://github.com/baskerville/sxhkd/issues/99
+## https://github.com/baskerville/sxhkd/issues/99

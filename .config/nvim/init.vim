@@ -231,7 +231,7 @@ let g:mta_filetypes = {
 hi MatchParen ctermfg=235 ctermbg=146
 
 " Clojure
-let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', 'loop$']
+let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', 'loop$', '^fn', '^ns', '^if-let$']
 let g:clojure_syntax_keywords = {
   \ 'clojureMacro': ["defroutes"]
   \ }

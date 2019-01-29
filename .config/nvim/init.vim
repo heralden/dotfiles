@@ -90,7 +90,7 @@ call plug#begin()
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-commentary'
   Plug 'lervag/vimtex'
-  Plug 'jpalardy/vim-slime'
+  Plug 'uosl/vim-slime'
   Plug 'ervandew/supertab'
   Plug 'w0rp/ale'
   Plug 'wellle/targets.vim'
@@ -354,6 +354,7 @@ nnoremap <Leader><C-b> :CloseBuffersMenu<CR>
 
 " Fugitive
 nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gi :Git config --list<CR>
 nnoremap <Leader>gC :Gcommit<CR>
 nnoremap <Leader>gd :Gdiff<CR>
 nnoremap <Leader>gD :Git! diff --cached<CR>

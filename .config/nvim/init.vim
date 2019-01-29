@@ -182,6 +182,16 @@ au BufNewFile,BufRead .eslintrc set filetype=json
 " au FileType javascript.jsx syn clear javascriptTemplate
 " au FileType javascript.jsx JsPreTmpl scss
 
+" REPL definitions
+au TermOpen *clj set filetype=clojure
+au TermOpen *rtop set filetype=reason
+au TermOpen *utop set filetype=ocaml
+au TermOpen *ghci set filetype=haskell
+au TermOpen *mzscheme set filetype=scheme
+au TermOpen *sbcl set filetype=lisp
+au TermOpen *node set filetype=javascript
+au TermOpen *python,*python3 set filetype=python
+
 " Javascript
 let g:jsx_ext_required = 0
 let g:used_javascript_libs = 'react,vue,underscore,d3,flux,jasmine,ramda,jquery,backbone'

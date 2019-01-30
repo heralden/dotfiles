@@ -353,7 +353,7 @@ nmap ga <Plug>(EasyAlign)
 nnoremap <Leader><C-b> :CloseBuffersMenu<CR>
 
 " Fugitive
-nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gs :belowright :20Gstatus<CR>
 nnoremap <Leader>gi :Git config --list<CR>
 nnoremap <Leader>gC :Gcommit<CR>
 nnoremap <Leader>gd :Gdiff<CR>

@@ -143,7 +143,9 @@ call plug#begin()
   Plug 'guns/vim-clojure-static'
   Plug 'tpope/vim-fireplace'
   Plug 'gregspurrier/vim-midje'
-  Plug 'kovisoft/paredit'
+  Plug 'eraserhd/parinfer-rust', {
+    \ 'do': 'cargo build --release',
+    \  }
   " Racket
   Plug 'wlangstroth/vim-racket'
   " Haskell
@@ -188,6 +190,7 @@ au TermOpen *rtop set filetype=reason
 au TermOpen *utop set filetype=ocaml
 au TermOpen *ghci set filetype=haskell
 au TermOpen *mzscheme set filetype=scheme
+au TermOpen *mit-scheme set filetype=scheme
 au TermOpen *sbcl set filetype=lisp
 au TermOpen *node set filetype=javascript
 au TermOpen *python,*python3 set filetype=python
@@ -306,6 +309,14 @@ let g:tmuxline_powerline_separators = 0
 " Clever-f
 " Quickly cancel find
 map ' <Plug>(clever-f-reset)
+
+" vim-better-whitespace
+" Paying attention to whitespace is silly.
+" Just strip it from lines we edit!
+let g:better_whitespace_enabled=0
+let g:strip_whitespace_on_save=1
+let g:strip_only_modified_lines=1
+let g:strip_whitespace_confirm=0
 
 " " " " " " "
 " Bindings  "

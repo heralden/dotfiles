@@ -116,10 +116,7 @@ call plug#begin()
   Plug 'othree/javascript-libraries-syntax.vim'
   Plug 'mxw/vim-jsx'
   Plug 'styled-components/vim-styled-components'
-  Plug 'jesstelford/vim-js-pretty-template', {
-        \ 'branch': 'no-default',
-        \ 'commit': 'f3431ae' }
-  " Plug 'Quramy/vim-js-pretty-template'
+  Plug 'Quramy/vim-js-pretty-template'
   Plug 'prettier/vim-prettier', {
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
   " TypeScript

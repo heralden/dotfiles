@@ -364,13 +364,13 @@ nmap ga <Plug>(EasyAlign)
 nnoremap <Leader><C-b> :CloseBuffersMenu<CR>
 
 " Fugitive
-nnoremap <Leader>gs :belowright :20Gstatus<CR>
+nnoremap <Leader>gs :belowright :Gstatus<CR>
 nnoremap <Leader>gi :Git config --list<CR>
 nnoremap <Leader>gC :Gcommit<CR>
 nnoremap <Leader>gd :Gdiff<CR>
 nnoremap <Leader>gD :Git! diff --cached<CR>
 nnoremap <Leader>gL :Glog --<CR>
-nnoremap <Leader>gl :Glog<CR>
+nnoremap <Leader>gl :0Glog<CR>
 nnoremap <Leader>gb :Gblame<CR>
 nnoremap <Leader>gW :Gwrite<CR>
 nnoremap <Leader>gm :Gmerge 

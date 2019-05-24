@@ -127,7 +127,16 @@ Scroll_Lock
 Pause
   pactl set-sink-volume 0 +5%
 
-# ctrl + alt + space
+super + F10
+  pactl set-sink-mute 0 toggle
+
+super + F11
+  pactl set-sink-volume 0 -5%
+
+super + F12
+  pactl set-sink-volume 0 +5%
+
+# super + alt + space
 #   ~/scripts/toggle-layout.sh
 
 # Make sxhkd reload its config files.

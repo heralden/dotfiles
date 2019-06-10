@@ -442,6 +442,9 @@ nnoremap <Leader>C :terminal $SHELL -c "cd `dirname %`; $SHELL"<CR>
 nnoremap <Leader>zi :echo b:terminal_job_id<CR>
 nnoremap <Leader>zs :let b:slime_config["jobid"] = input("jobid: ", b:slime_config["jobid"])<CR>
 
+" grep for visual mode selection in working directory
+vnoremap <Leader>* y:grep -r --exclude-dir=node_modules '<C-r>"' .<CR>
+
 " Highlight all instances of word under cursor, when idle.
 " Useful when studying strange source code.
 " Type z/ to toggle highlighting on/off.

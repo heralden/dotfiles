@@ -1,0 +1,4 @@
+mkdir -p ~/.local/share/fonts
+# Move your fonts into the above directory.
+fc-cache -f
+# Log out and in again.

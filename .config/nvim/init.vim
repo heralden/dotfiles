@@ -159,6 +159,10 @@ call plug#begin()
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
+  " Go
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+  " Elm
+  Plug 'elmcast/elm-vim'
   " " (Optional) Multi-entry selection UI.
   Plug 'junegunn/fzf'
   " " (Completion plugin option 1)

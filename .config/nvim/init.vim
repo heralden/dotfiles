@@ -28,6 +28,8 @@ set path+=**
 set wildmenu
 set wildmode=list:longest,full
 set wildignore+=**/node_modules/**
+set wildignore+=**/target/**
+set wildignore+=**/resources/public/**
 
 " Remove annoyance from GUI
 set guioptions-=m
@@ -333,6 +335,8 @@ map <C-l> <C-w>l
 let mapleader = ";"
 
 " Ale
+" Set linters
+let g:ale_linters = {'clojure': ['clj-kondo']}
 " Navigate between linting errors quickly
 nmap <Leader><C-j> <Plug>(ale_next_wrap)
 nmap <Leader><C-k> <Plug>(ale_previous_wrap)
@@ -363,6 +367,9 @@ nmap ga <Plug>(EasyAlign)
 
 " close-buffers.vim
 nnoremap <Leader><C-b> :CloseBuffersMenu<CR>
+
+" Fireplace
+nnoremap <Leader>Cpb :CljEval (cider.piggieback/cljs-repl (figwheel-sidecar.repl-api/repl-env))<CR>
 
 " Fugitive
 nnoremap <Leader>gs :belowright :Gstatus<CR>
@@ -440,7 +447,7 @@ nnoremap <Leader><C-s><C-s> :mks! ~/.config/nvim/sessions/_quicksave<CR>
 nnoremap <Leader><C-s><C-l> :so ~/.config/nvim/sessions/_quicksave<CR>
 
 " Quickly open terminal in directory of file
-nnoremap <Leader>C :terminal $SHELL -c "cd `dirname %`; $SHELL"<CR>
+" nnoremap <Leader>C :terminal $SHELL -c "cd `dirname %`; $SHELL"<CR>
 
 " vim-slime job id handling for neovim terminal
 nnoremap <Leader>zi :echo b:terminal_job_id<CR>

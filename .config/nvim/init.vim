@@ -93,7 +93,7 @@ call plug#begin()
   Plug 'tpope/vim-commentary'
   Plug 'lervag/vimtex'
   Plug 'uosl/vim-slime'
-  Plug 'ervandew/supertab'
+  " Plug 'ervandew/supertab'
   Plug 'w0rp/ale'
   Plug 'wellle/targets.vim'
   Plug 'MarcWeber/vim-addon-mw-utils'
@@ -105,6 +105,7 @@ call plug#begin()
   Plug 'Asheq/close-buffers.vim'
   Plug 'junegunn/vim-easy-align'
   Plug 'ntpeters/vim-better-whitespace'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
   " JavaScript
   " Plug 'othree/yajs.vim', {
   "       \ 'for': ['javascript', 'javascript.jsx'],
@@ -145,6 +146,9 @@ call plug#begin()
   Plug 'eraserhd/parinfer-rust', {
     \ 'do': 'cargo build --release',
     \  }
+  Plug 'clojure-vim/async-clj-omni'
+  Plug 'radenling/vim-dispatch-neovim'
+  Plug 'clojure-vim/vim-jack-in'
   " Racket
   Plug 'wlangstroth/vim-racket'
   " Haskell
@@ -157,10 +161,10 @@ call plug#begin()
   Plug 'uosl/vim-reason-plus', {
     \ 'branch': 'fix-indent',
     \ }
-  Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+  " Plug 'autozimu/LanguageClient-neovim', {
+  "   \ 'branch': 'next',
+  "   \ 'do': 'bash install.sh',
+  "   \ }
   " Go
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
   " Elm
@@ -247,7 +251,7 @@ let g:mta_filetypes = {
 hi MatchParen ctermfg=235 ctermbg=146
 
 " Clojure
-let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', 'loop$', '^fn', '^ns', '^if-let$']
+let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', 'loop$', '^fn', '^ns', '^if-let$', 'testing', 'wait-for']
 let g:clojure_syntax_keywords = {
   \ 'clojureMacro': ["defroutes"]
   \ }
@@ -321,6 +325,69 @@ let g:strip_whitespace_on_save=1
 let g:strip_only_modified_lines=1
 let g:strip_whitespace_confirm=0
 
+" supertab
+" let g:SuperTabDefaultCompletionType = "<c-n>"
+
+" coc.nvim
+set hidden
+set pumheight=10
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+" Reference with `:h coc-configuration`.
+let g:coc_user_config = {
+  \ 'suggest.noselect': 0,
+  \ 'suggest.maxCompleteItemCount': 15,
+  \ 'languageserver': {
+  \   'clojure-lsp': {
+  \     'command': 'bash',
+  \     'args': ['-c', 'clojure-lsp'],
+  \     'filetypes': ['clojure'],
+  \     'disableDiagnostics': 1,
+  \     'disableCompletion': 0,
+  \     'rootPatterns': ['project.clj'],
+  \     'additionalSchemes': ['jar', 'zipfile'],
+  \     'trace.server': 'verbose',
+  \     'initializationOptions': {
+  \     }
+  \   }
+  \ }
+\ }
+" Use tab for trigger completion with characters ahead and navigate.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gn <Plug>(coc-rename)
+nmap <silent> ge <Plug>(coc-refactor)
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
 " " " " " " "
 " Bindings  "
 " " " " " " "
@@ -373,6 +440,7 @@ nnoremap <Leader>Cpb :CljEval (cider.piggieback/cljs-repl (figwheel-sidecar.repl
 
 " Fugitive
 nnoremap <Leader>gs :belowright :Gstatus<CR>
+nnoremap <Leader>gvs :vertical :Gstatus<CR>
 nnoremap <Leader>gi :Git config --list<CR>
 nnoremap <Leader>gC :Gcommit<CR>
 nnoremap <Leader>gd :Gdiff<CR>
@@ -492,15 +560,11 @@ nnoremap <Leader>hs :echo "name: hi<"
   \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"bg") . ">"<CR>
 
 " LanguageClient-neovim
-" " Required for operations modifying multiple buffers like rename.
-set hidden
-" This also speeds up buffer switching when using vim-airline
-
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_serverCommands = {
-    \ 'reason': ['ocaml-language-server', '--stdio'],
-    \ 'ocaml': ['ocaml-language-server', '--stdio'],
-    \ }
+" let g:LanguageClient_autoStart = 1
+" let g:LanguageClient_serverCommands = {
+"     \ 'reason': ['ocaml-language-server', '--stdio'],
+"     \ 'ocaml': ['ocaml-language-server', '--stdio'],
+"     \ }
 
 "\ 'rust': ['rustup', 'run', 'nightly', 'rls'],
 "\ 'javascript': ['javascript-typescript-stdio'],
@@ -508,11 +572,11 @@ let g:LanguageClient_serverCommands = {
 
 " autocmd BufWritePre *.re :call LanguageClient_textDocument_formatting()
 
-nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
-nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<cr>
-nnoremap <silent> g<cr> :call LanguageClient_textDocument_hover()<cr>
+" nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+" nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+" nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+" nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<cr>
+" nnoremap <silent> g<cr> :call LanguageClient_textDocument_hover()<cr>
 
 let g:clipboard = {
   \   'name': 'xclip-xfce4-clipman',

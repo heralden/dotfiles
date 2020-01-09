@@ -524,6 +524,8 @@ nnoremap <Leader>zs :let b:slime_config["jobid"] = input("jobid: ", b:slime_conf
 " grep for visual mode selection in working directory
 vnoremap <Leader>* y:grep -r --exclude-dir=node_modules '<C-r>"' .<CR>
 
+nnoremap <Leader>C :new ~/.config/nvim/init.vim<CR>
+
 " Highlight all instances of word under cursor, when idle.
 " Useful when studying strange source code.
 " Type z/ to toggle highlighting on/off.

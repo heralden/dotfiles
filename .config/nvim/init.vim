@@ -102,7 +102,7 @@ call plug#begin()
   Plug 'rhysd/clever-f.vim'
   Plug 'uosl/split-term.vim'
   Plug 'moll/vim-bbye'
-  Plug 'Asheq/close-buffers.vim'
+  " Plug 'Asheq/close-buffers.vim'
   Plug 'junegunn/vim-easy-align'
   Plug 'ntpeters/vim-better-whitespace'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -141,14 +141,14 @@ call plug#begin()
   Plug 'posva/vim-vue'
   " Clojure
   Plug 'guns/vim-clojure-static'
-  Plug 'tpope/vim-fireplace'
-  Plug 'gregspurrier/vim-midje'
+  " Plug 'tpope/vim-fireplace'
+  " Plug 'gregspurrier/vim-midje'
   Plug 'eraserhd/parinfer-rust', {
     \ 'do': 'cargo build --release',
     \  }
   Plug 'clojure-vim/async-clj-omni'
-  Plug 'radenling/vim-dispatch-neovim'
-  Plug 'clojure-vim/vim-jack-in'
+  " Plug 'radenling/vim-dispatch-neovim'
+  " Plug 'clojure-vim/vim-jack-in'
   " Racket
   Plug 'wlangstroth/vim-racket'
   " Haskell
@@ -170,7 +170,12 @@ call plug#begin()
   " Elm
   Plug 'elmcast/elm-vim'
   " " (Optional) Multi-entry selection UI.
-  Plug 'junegunn/fzf'
+  Plug 'liuchengxu/vim-clap'
+  Plug 'guns/vim-sexp',    {'for': 'clojure'}
+  " Plug 'tpope/vim-sexp-mappings-for-regular-people',    {'for': 'clojure'}
+  Plug 'liquidz/vim-iced', {'for': 'clojure'}
+  Plug 'liquidz/vim-iced-kaocha', {'for': 'clojure'}
+  " Plug 'junegunn/fzf'
   " " (Completion plugin option 1)
   Plug 'roxma/nvim-completion-manager', { 'for': 'reason' }
 call plug#end()
@@ -255,6 +260,7 @@ let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', 'loop$', '^fn', 
 let g:clojure_syntax_keywords = {
   \ 'clojureMacro': ["defroutes"]
   \ }
+let g:iced_enable_default_key_mappings = v:true
 
 " " Syntastic
 " set statusline+=%#warningmsg#
@@ -436,7 +442,7 @@ nmap ga <Plug>(EasyAlign)
 nnoremap <Leader><C-b> :CloseBuffersMenu<CR>
 
 " Fireplace
-nnoremap <Leader>Cpb :CljEval (cider.piggieback/cljs-repl (figwheel-sidecar.repl-api/repl-env))<CR>
+" nnoremap <Leader>Cpb :CljEval (cider.piggieback/cljs-repl (figwheel-sidecar.repl-api/repl-env))<CR>
 
 " Fugitive
 nnoremap <Leader>gs :belowright :Gstatus<CR>

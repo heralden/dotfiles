@@ -16,9 +16,11 @@ set laststatus=2 "Display StatusLine at all times
 set ruler
 set number
 set relativenumber
-"set noequalalways "Do not equalize on splitting
+set noequalalways "Do not equalize on splitting
 set splitbelow
-"set splitright
+set splitright
+set winwidth=80
+set winheight=20
 set noshowmode "hide ugly INSERT alert
 set nohlsearch
 set completeopt=
@@ -102,11 +104,13 @@ call plug#begin()
   Plug 'rhysd/clever-f.vim'
   Plug 'uosl/split-term.vim'
   Plug 'moll/vim-bbye'
-  " Plug 'Asheq/close-buffers.vim'
+  Plug 'Asheq/close-buffers.vim'
   Plug 'junegunn/vim-easy-align'
   Plug 'ntpeters/vim-better-whitespace'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'jiangmiao/auto-pairs', { 'tag': 'v2.0.0' }
   " JavaScript
+  Plug 'kchmck/vim-coffee-script'
   " Plug 'othree/yajs.vim', {
   "       \ 'for': ['javascript', 'javascript.jsx'],
   "       \ 'commit': 'c5b6719e1ad66b82cbc435b92b3bf2a7ab98696c' }
@@ -118,7 +122,7 @@ call plug#begin()
   Plug 'pangloss/vim-javascript'
   Plug 'othree/javascript-libraries-syntax.vim'
   Plug 'mxw/vim-jsx'
-  Plug 'styled-components/vim-styled-components'
+  " Plug 'styled-components/vim-styled-components'
   Plug 'Quramy/vim-js-pretty-template'
   Plug 'prettier/vim-prettier', {
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
@@ -149,6 +153,7 @@ call plug#begin()
   Plug 'clojure-vim/async-clj-omni'
   " Plug 'radenling/vim-dispatch-neovim'
   " Plug 'clojure-vim/vim-jack-in'
+  " Plug 'venantius/vim-cljfmt'
   " Racket
   Plug 'wlangstroth/vim-racket'
   " Haskell
@@ -171,8 +176,8 @@ call plug#begin()
   Plug 'elmcast/elm-vim'
   " " (Optional) Multi-entry selection UI.
   Plug 'liuchengxu/vim-clap'
-  Plug 'guns/vim-sexp',    {'for': 'clojure'}
-  " Plug 'tpope/vim-sexp-mappings-for-regular-people',    {'for': 'clojure'}
+  Plug 'guns/vim-sexp', {'for': 'clojure'}
+  Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
   Plug 'liquidz/vim-iced', {'for': 'clojure'}
   Plug 'liquidz/vim-iced-kaocha', {'for': 'clojure'}
   " Plug 'junegunn/fzf'
@@ -256,11 +261,13 @@ let g:mta_filetypes = {
 hi MatchParen ctermfg=235 ctermbg=146
 
 " Clojure
-let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', 'loop$', '^fn', '^ns', '^if-let$', 'testing', 'wait-for']
+let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', 'loop$', '^fn', '^ns', '^if-let$', 'testing', 'wait-for', 'async']
 let g:clojure_syntax_keywords = {
   \ 'clojureMacro': ["defroutes"]
   \ }
 let g:iced_enable_default_key_mappings = v:true
+" vim-cljfmt
+let g:clj_fmt_autosave = 0
 
 " " Syntastic
 " set statusline+=%#warningmsg#
@@ -271,6 +278,10 @@ let g:iced_enable_default_key_mappings = v:true
 " let g:syntastic_check_on_open = 1
 " let g:syntastic_check_on_wq = 0
 
+" auto pairs
+au Filetype clojure let b:AutoPairs = {"\"": "\""}
+au Filetype vim let b:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'", "`":"`", '```':'```', '"""':'"""', "'''":"'''"}
+
 " " Paredit
 " " Do not move closing parenthesis to next line
 let g:paredit_electric_return = 0
@@ -279,6 +290,9 @@ let g:paredit_smartjump = 1
 
 " " Fireplace
 " au User FireplacePreConnect call fireplace#register_port_file(expand('~/.lein/repl-port'), '/')
+
+" " Iced
+autocmd BufWritePre *.clj,*.cljs,*.cljc IcedFormatAll
 
 " " Rainbow parentheses
 " au VimEnter * RainbowParenthesesToggle
@@ -350,7 +364,7 @@ let g:coc_user_config = {
   \     'filetypes': ['clojure'],
   \     'disableDiagnostics': 1,
   \     'disableCompletion': 0,
-  \     'rootPatterns': ['project.clj'],
+  \     'rootPatterns': ['project.clj', 'deps.edn'],
   \     'additionalSchemes': ['jar', 'zipfile'],
   \     'trace.server': 'verbose',
   \     'initializationOptions': {
@@ -406,6 +420,7 @@ map <C-l> <C-w>l
 
 " Leader mappings
 let mapleader = ";"
+let maplocalleader = ";"
 
 " Ale
 " Set linters
@@ -443,6 +458,9 @@ nnoremap <Leader><C-b> :CloseBuffersMenu<CR>
 
 " Fireplace
 " nnoremap <Leader>Cpb :CljEval (cider.piggieback/cljs-repl (figwheel-sidecar.repl-api/repl-env))<CR>
+
+" Iced
+nnoremap <Leader><C-'> :IcedStartCljsRepl figwheel-sidecar<CR>
 
 " Fugitive
 nnoremap <Leader>gs :belowright :Gstatus<CR>

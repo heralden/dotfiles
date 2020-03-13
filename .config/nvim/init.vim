@@ -174,6 +174,9 @@ call plug#begin()
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
   " Elm
   Plug 'elmcast/elm-vim'
+  " Python
+  Plug 'vim-python/python-syntax'
+  "Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
   " " (Optional) Multi-entry selection UI.
   Plug 'liuchengxu/vim-clap'
   Plug 'guns/vim-sexp', {'for': 'clojure'}
@@ -200,6 +203,8 @@ au BufNewFile,BufRead .eslintrc set filetype=json
 " " Workaround for vim-js-pretty-template:
 " au FileType javascript.jsx syn clear javascriptTemplate
 " au FileType javascript.jsx JsPreTmpl scss
+
+au BufNewFile,BufRead *.css,*.less,*.sass,*.scss call Indent4()
 
 " REPL definitions
 au TermOpen *clj set filetype=clojure
@@ -269,6 +274,9 @@ let g:iced_enable_default_key_mappings = v:true
 " vim-cljfmt
 let g:clj_fmt_autosave = 0
 
+" Python
+let g:python_highlight_all = 1
+
 " " Syntastic
 " set statusline+=%#warningmsg#
 " set statusline+=%{SyntasticStatuslineFlag()}
@@ -292,7 +300,7 @@ let g:paredit_smartjump = 1
 " au User FireplacePreConnect call fireplace#register_port_file(expand('~/.lein/repl-port'), '/')
 
 " " Iced
-autocmd BufWritePre *.clj,*.cljs,*.cljc IcedFormatAll
+" autocmd BufWritePre *.clj,*.cljs,*.cljc IcedFormatAll | w
 
 " " Rainbow parentheses
 " au VimEnter * RainbowParenthesesToggle
@@ -368,6 +376,7 @@ let g:coc_user_config = {
   \     'additionalSchemes': ['jar', 'zipfile'],
   \     'trace.server': 'verbose',
   \     'initializationOptions': {
+  \       'ignore-classpath-directories': 1
   \     }
   \   }
   \ }
@@ -420,7 +429,7 @@ map <C-l> <C-w>l
 
 " Leader mappings
 let mapleader = ";"
-let maplocalleader = ";"
+let maplocalleader = "'"
 
 " Ale
 " Set linters
@@ -460,7 +469,8 @@ nnoremap <Leader><C-b> :CloseBuffersMenu<CR>
 " nnoremap <Leader>Cpb :CljEval (cider.piggieback/cljs-repl (figwheel-sidecar.repl-api/repl-env))<CR>
 
 " Iced
-nnoremap <Leader><C-'> :IcedStartCljsRepl figwheel-sidecar<CR>
+nnoremap <Leader><M-'> :IcedStartCljsRepl figwheel-sidecar<CR>
+nmap <Leader>er <Plug>(iced_eval_and_replace)<Plug>(sexp_inner_element)
 
 " Fugitive
 nnoremap <Leader>gs :belowright :Gstatus<CR>

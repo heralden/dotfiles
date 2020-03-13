@@ -43,8 +43,8 @@ super + ctrl + m
 super + ctrl + s
 	bspc node -t ~pseudo_tiled
 
-super + o
-	bspc node -f last
+# super + o
+# 	bspc node -f last
 
 super + ctrl + w
 	bspc node -c
@@ -64,10 +64,12 @@ super + {1-9,0}
 super + alt + {1-9,0}
 	bspc node -d focused:^{1-9,10}
 
-super + {n,p,u,v}
+super + {n,p}
+# super + {n,p,u,v}
 	bspc monitor -f {east,west,north,south}
 
-super + alt + {n,p,u,v}
+super + alt + {n,p}
+# super + alt + {n,p,u,v}
 	bspc node -m {east,west,north,south}
 
 super + alt + {x,y}
@@ -81,8 +83,12 @@ super + {comma,period}
 
 super + bracket{left,right}
 	bspc desktop -f {prev.local,next.local}
+super + {i,o}
+	bspc desktop -f {prev.local,next.local}
 
 super + alt + bracket{left,right}
+  bspc node -d {prev,next}
+super + alt + {i,o}
   bspc node -d {prev,next}
 
 super + alt + b
@@ -114,6 +120,15 @@ super + space
 # Right-click for single mouse buttons!
 ctrl + @button1
   xdotool click 3
+
+ctrl + alt + @button1
+  xdotool click 2
+
+super + ctrl + z
+  xdotool click 5
+
+super + ctrl + x
+  xdotool click 4
 
 super + Pause
   xscreensaver-command -lock

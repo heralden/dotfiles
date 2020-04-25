@@ -207,7 +207,7 @@ au BufNewFile,BufRead .eslintrc set filetype=json
 au BufNewFile,BufRead *.css,*.less,*.sass,*.scss call Indent4()
 
 " REPL definitions
-au TermOpen *clj set filetype=clojure
+au TermOpen *clj set filetype=clojure | ParinferOff
 au TermOpen *rtop set filetype=reason
 au TermOpen *utop set filetype=ocaml
 au TermOpen *ghci set filetype=haskell

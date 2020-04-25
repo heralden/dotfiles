@@ -130,6 +130,15 @@ super + ctrl + z
 super + ctrl + x
   xdotool click 4
 
+Menu
+  if [ $(xinput list-props 'Drakware LLC (drakware.com) ADB2USB Mouse' | grep "libinput Button Scrolling Button" | head -n 1 | tail -c 2) = 1 ]; then xinput set-prop 'Drakware LLC (drakware.com) ADB2USB Mouse' "libinput Button Scrolling Button" 2 && bspc config focused_border_color "#d326ff"; else xinput set-prop 'Drakware LLC (drakware.com) ADB2USB Mouse' "libinput Button Scrolling Button" 1 && bspc config focused_border_color "#ffb326"; fi
+
+super + Menu
+  xinput set-prop 'Drakware LLC (drakware.com) ADB2USB Mouse' "libinput Left Handed Enabled" 1
+
+super + @Menu
+  xinput set-prop 'Drakware LLC (drakware.com) ADB2USB Mouse' "libinput Left Handed Enabled" 0
+
 super + Pause
   xscreensaver-command -lock
 

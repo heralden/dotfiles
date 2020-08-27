@@ -8,6 +8,77 @@ Xft.rgba: rgb
 Xft.hinting: true
 Xft.hintstyle: hintslight
 
+!Xft.rgba: none
+!Xft.hintstyle: hintfull
+
+!-------------------------------------------------------------------------------
+! st settings
+!-------------------------------------------------------------------------------
+
+st.inputMethod: ibus
+
+st.termName: xterm-256color
+
+!st.depth: 32
+!st.saveLines: 2000
+!st.internalBorder: 3
+
+!st.background: #262626
+!st.borderColor: #262626
+
+st.font: Fira Code:pixelsize=14:antialias=true:autohint=true;
+st.font2: xft:Noto Sans CJK JP
+st.chscale: 1.0
+st.cwscale: 0.8
+
+!st.font: xft:Fira Code:size=10,xft:TakaoPGothic,xft:Noto Sans CJK JP,xft:Noto Color Emoji
+!st.imFont: xft:Fira Code:size=10,xft:TakaoPGothic,xft:Noto Sans CJK JP,xft:Noto Color Emoji
+
+!st.scrollStyle: rxvt
+!st.scrollBar: false
+
+!st.perl-ext-common: default,matcher,selection-to-clipboard
+!st.matcher.button: 1
+!st.url-launcher: /usr/bin/firefox
+
+!st.cursorBlink: true
+!st.cursorUnderline: false
+
+!st.pointerBlank: true
+
+st.borderpx: 1
+
+! PaperColor Theme
+st.alpha: 1
+st.foreground: #4D4D4C
+st.background: #EEEEEE
+st.cursorColor: #4D4D4C
+st.borderColor: #EEEEEE
+! black
+st.color0: #EDEDED
+st.color8: #969694
+! red
+st.color1: #D7005F
+st.color9: #D7005F
+! green
+st.color2: #718C00
+st.color10: #718C00
+! yellow / orange
+st.color3: #D75F00
+st.color11: #D75F00
+! blue
+st.color4: #4271AE
+st.color12: #4271AE
+! magenta
+st.color5: #8959A8
+st.color13: #8959A8
+! cyan
+st.color6: #3E999F
+st.color14: #3E999F
+! white
+st.color7: #4D4D4C
+st.color15: #F5F5F5
+
 !-------------------------------------------------------------------------------
 ! URxvt settings
 !-------------------------------------------------------------------------------

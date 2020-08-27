@@ -111,15 +111,15 @@ super + {Left,Down,Up,Right}
 super + shift + End
 	xflock4
 
-super + {c,Return}
-	SHELL=/usr/bin/zsh urxvtc
+super + c
+	SHELL=/usr/bin/zsh st
 
 super + space
 	rofi -show run -monitor -1
 
 # Right-click for single mouse buttons!
-ctrl + @button1
-  xdotool click 3
+# ctrl + @button1
+#   xdotool click 3
 
 ctrl + alt + @button1
   xdotool click 2
@@ -131,13 +131,13 @@ super + ctrl + x
   xdotool click 4
 
 Menu
-  if [ $(xinput list-props 'Drakware LLC (drakware.com) ADB2USB Mouse' | grep "libinput Button Scrolling Button" | head -n 1 | tail -c 2) = 1 ]; then xinput set-prop 'Drakware LLC (drakware.com) ADB2USB Mouse' "libinput Button Scrolling Button" 2 && bspc config focused_border_color "#d326ff"; else xinput set-prop 'Drakware LLC (drakware.com) ADB2USB Mouse' "libinput Button Scrolling Button" 1 && bspc config focused_border_color "#ffb326"; fi
+  if [ $(xinput list-props 'Clearly Superior Technologies. CST Laser Trackball' | grep "libinput Button Scrolling Button" | head -n 1 | tail -c 2) = 1 ]; then xinput set-prop 'Clearly Superior Technologies. CST Laser Trackball' "libinput Button Scrolling Button" 2 && bspc config focused_border_color "#d326ff"; else xinput set-prop 'Clearly Superior Technologies. CST Laser Trackball' "libinput Button Scrolling Button" 1 && bspc config focused_border_color "#ffb326"; fi
 
 super + Menu
-  xinput set-prop 'Drakware LLC (drakware.com) ADB2USB Mouse' "libinput Left Handed Enabled" 1
+  xinput set-prop 'Clearly Superior Technologies. CST Laser Trackball' "libinput Left Handed Enabled" 1
 
 super + @Menu
-  xinput set-prop 'Drakware LLC (drakware.com) ADB2USB Mouse' "libinput Left Handed Enabled" 0
+  xinput set-prop 'Clearly Superior Technologies. CST Laser Trackball' "libinput Left Handed Enabled" 0
 
 super + Pause
   xscreensaver-command -lock

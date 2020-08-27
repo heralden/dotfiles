@@ -7,9 +7,10 @@ bspc config focused_border_color "#d326ff"
 
 bspc config border_width 	2
 bspc config window_gap		12
-bspc config top_padding		25
+bspc config -m ^1 top_padding		26
 
-bspc config click_to_focus  true
+bspc config click_to_focus any
+#bspc config ignore_ewmh_focus true
 
 bspc config split_ratio		0.52
 bspc config focus_by_distance	true
@@ -31,5 +32,5 @@ bspc rule -a sfml floating=on center=on
 # Screen blanking handled by hardware motion detection.
 xset s 0 -dpms
 
-xinput set-prop 'Drakware LLC (drakware.com) ADB2USB Mouse' "libinput Scroll Method Enabled" 0, 0, 1
-xinput set-prop 'Drakware LLC (drakware.com) ADB2USB Mouse' "libinput Natural Scrolling Enabled" 1
+xinput set-prop 'Clearly Superior Technologies. CST Laser Trackball' "libinput Scroll Method Enabled" 0, 0, 1
+#xinput set-prop 'Clearly Superior Technologies. CST Laser Trackball' "libinput Natural Scrolling Enabled" 1

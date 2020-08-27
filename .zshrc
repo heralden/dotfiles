@@ -325,3 +325,16 @@ _mkdir_arg() {
 }
 zle -N mkdir-arg _mkdir_arg
 bindkey '^[M' mkdir-arg
+
+# OPAM configuration
+. /home/regen/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+# NVM configuration
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# GNUPG
+GNUPGHOME=~/.gnupg
+GPG_TTY=$(tty)
+export GPG_TTY

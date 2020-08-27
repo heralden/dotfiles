@@ -179,6 +179,7 @@ call plug#begin()
   "Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
   " " (Optional) Multi-entry selection UI.
   Plug 'liuchengxu/vim-clap'
+  Plug 'dominikduda/vim_current_word'
   Plug 'guns/vim-sexp', {'for': 'clojure'}
   Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
   Plug 'liquidz/vim-iced', {'for': 'clojure'}
@@ -204,10 +205,11 @@ au BufNewFile,BufRead .eslintrc set filetype=json
 " au FileType javascript.jsx syn clear javascriptTemplate
 " au FileType javascript.jsx JsPreTmpl scss
 
-au BufNewFile,BufRead *.css,*.less,*.sass,*.scss call Indent4()
+au BufNewFile,BufRead *.css,*.less,*.sass,*.scss,*.erl call Indent4()
 
 " REPL definitions
-au TermOpen *clj set filetype=clojure | ParinferOff
+au TermOpen *clj set filetype=clojure
+au TermOpen *erl set filetype=erlang
 au TermOpen *rtop set filetype=reason
 au TermOpen *utop set filetype=ocaml
 au TermOpen *ghci set filetype=haskell
@@ -271,6 +273,8 @@ let g:clojure_syntax_keywords = {
   \ 'clojureMacro': ["defroutes"]
   \ }
 let g:iced_enable_default_key_mappings = v:true
+let g:iced_default_key_mapping_leader = '<LocalLeader>'
+let g:iced#nrepl#auto#does_switch_session = v:true
 " vim-cljfmt
 let g:clj_fmt_autosave = 0
 
@@ -345,6 +349,12 @@ let g:tmuxline_powerline_separators = 0
 " Quickly cancel find
 map ' <Plug>(clever-f-reset)
 
+" vim-clap
+let g:clap_theme = 'solarized_light'
+
+" vim_current_word
+let g:vim_current_word#highlight_current_word = 0
+
 " vim-better-whitespace
 " Paying attention to whitespace is silly.
 " Just strip it from lines we edit!
@@ -398,11 +408,15 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" Use `[r` and `]r` to navigate list (ie. references)
+nmap <silent> [r :CocPrev<CR>
+nmap <silent> ]r :CocNext<CR>
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gR :CocListResume<CR>
 nmap <silent> gn <Plug>(coc-rename)
 nmap <silent> ge <Plug>(coc-refactor)
 " Use K to show documentation in preview window
@@ -469,8 +483,8 @@ nnoremap <Leader><C-b> :CloseBuffersMenu<CR>
 " nnoremap <Leader>Cpb :CljEval (cider.piggieback/cljs-repl (figwheel-sidecar.repl-api/repl-env))<CR>
 
 " Iced
-nnoremap <Leader><M-'> :IcedStartCljsRepl figwheel-sidecar<CR>
-nmap <Leader>er <Plug>(iced_eval_and_replace)<Plug>(sexp_inner_element)
+nnoremap <LocalLeader><M-'> :IcedStartCljsRepl figwheel-sidecar<CR>
+nmap <LocalLeader>er <Plug>(iced_eval_and_replace)<Plug>(sexp_inner_element)
 
 " Fugitive
 nnoremap <Leader>gs :belowright :Gstatus<CR>
@@ -548,6 +562,19 @@ nnoremap <Leader>Q :q<CR>
 nnoremap <Leader><C-s><C-s> :mks! ~/.config/nvim/sessions/_quicksave<CR>
 nnoremap <Leader><C-s><C-l> :so ~/.config/nvim/sessions/_quicksave<CR>
 
+" clap
+nnoremap <Leader>ff :Clap files<CR>
+nnoremap <Leader>fl :Clap blines<CR>
+nnoremap <Leader>fc :Clap command<CR>
+nnoremap <Leader>fh :Clap command_history<CR>
+nnoremap <Leader>fg :Clap grep<CR>
+nnoremap <Leader>fj :Clap jumps<CR>
+nnoremap <Leader>fL :Clap lines<CR>
+nnoremap <Leader>fb :Clap buffers<CR>
+nnoremap <Leader>fq :Clap quickfix<CR>
+nnoremap <Leader>fr :Clap registers<CR>
+nnoremap <Leader>fy :Clap yanks<CR>
+
 " Quickly open terminal in directory of file
 " nnoremap <Leader>C :terminal $SHELL -c "cd `dirname %`; $SHELL"<CR>
 
@@ -563,25 +590,25 @@ nnoremap <Leader>C :new ~/.config/nvim/init.vim<CR>
 " Highlight all instances of word under cursor, when idle.
 " Useful when studying strange source code.
 " Type z/ to toggle highlighting on/off.
-nnoremap z/ :if AutoHighlightToggle()<Bar>set hls<Bar>else<Bar> set nohls<Bar>endif<CR>
-function! AutoHighlightToggle()
-  let @/ = ''
-  if exists('#auto_highlight')
-    au! auto_highlight
-    augroup! auto_highlight
-    setl updatetime=4000
-    echo 'Highlight current word: off'
-    return 0
-  else
-    augroup auto_highlight
-      au!
-      au CursorHold * let @/ = '\V\<'.escape(expand('<cword>'), '\').'\>'
-    augroup end
-    setl updatetime=500
-    echo 'Highlight current word: ON'
-    return 1
-  endif
-endfunction
+"nnoremap z/ :if AutoHighlightToggle()<Bar>set hls<Bar>else<Bar> set nohls<Bar>endif<CR>
+"function! AutoHighlightToggle()
+"  let @/ = ''
+"  if exists('#auto_highlight')
+"    au! auto_highlight
+"    augroup! auto_highlight
+"    setl updatetime=4000
+"    echo 'Highlight current word: off'
+"    return 0
+"  else
+"    augroup auto_highlight
+"      au!
+"      au CursorHold * let @/ = '\V\<'.escape(expand('<cword>'), '\').'\>'
+"    augroup end
+"    setl updatetime=500
+"    echo 'Highlight current word: ON'
+"    return 1
+"  endif
+"endfunction
 
 " Display syntax information under cursor
 nnoremap <Leader>hs :echo "name: hi<"
@@ -626,3 +653,14 @@ let g:clipboard = {
   \   },
   \   'cache_enabled': 1,
   \ }
+
+" Mail
+
+" Add format option 'w' to add trailing white space, indicating that paragraph
+" continues on next line. This is to be used with mutt's 'text_flowed' option.
+augroup mail_trailing_whitespace " {
+    autocmd!
+    autocmd FileType mail setlocal formatoptions+=w
+    autocmd FileType mail setlocal textwidth=80
+    autocmd FileType mail CocDisable
+augroup END " }

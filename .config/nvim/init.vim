@@ -104,7 +104,7 @@ call plug#begin()
   Plug 'rhysd/clever-f.vim'
   Plug 'uosl/split-term.vim'
   Plug 'moll/vim-bbye'
-  Plug 'Asheq/close-buffers.vim'
+  Plug 'bdlangton/close-buffers.vim'
   Plug 'junegunn/vim-easy-align'
   Plug 'ntpeters/vim-better-whitespace'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -477,7 +477,13 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " close-buffers.vim
+" " conflict with vim-bbye
+let g:close_buffers_bdelete_command = 'CBdelete'
+let g:close_buffers_bwipeout_command = 'CBwipeout'
 nnoremap <Leader><C-b> :CloseBuffersMenu<CR>
+
+" vimtex
+let g:tex_flavor = 'latex'
 
 " Fireplace
 " nnoremap <Leader>Cpb :CljEval (cider.piggieback/cljs-repl (figwheel-sidecar.repl-api/repl-env))<CR>

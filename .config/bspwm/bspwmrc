@@ -28,9 +28,3 @@ bspc rule -a xcalc floating=on
 bspc rule -a skype floating=on fullscreen=off
 bspc rule -a org-igoweb-cgoban-CGoban floating=on border=off
 bspc rule -a sfml floating=on center=on
-
-# Screen blanking handled by hardware motion detection.
-xset s 0 -dpms
-
-xinput set-prop 'Clearly Superior Technologies. CST Laser Trackball' "libinput Scroll Method Enabled" 0, 0, 1
-#xinput set-prop 'Clearly Superior Technologies. CST Laser Trackball' "libinput Natural Scrolling Enabled" 1

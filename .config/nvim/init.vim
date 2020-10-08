@@ -141,6 +141,7 @@ call plug#begin()
         \ 'commit': 'ed97cb7' }
   Plug 'ap/vim-css-color', {
         \ 'commit': '2411b84' }
+  Plug 'iamcco/coc-tailwindcss',  {'do': 'npm install && npm run build'}
   " Vue
   Plug 'posva/vim-vue'
   " Clojure

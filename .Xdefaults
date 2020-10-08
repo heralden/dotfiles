@@ -26,10 +26,10 @@ st.termName: xterm-256color
 !st.background: #262626
 !st.borderColor: #262626
 
-st.font: Fira Code:pixelsize=14:antialias=true:autohint=true;
+st.font: Fira Code:pixelsize=16:antialias=true:autohint=true;
 st.font2: xft:Noto Sans CJK JP
 st.chscale: 1.0
-st.cwscale: 0.8
+st.cwscale: 0.9
 
 !st.font: xft:Fira Code:size=10,xft:TakaoPGothic,xft:Noto Sans CJK JP,xft:Noto Color Emoji
 !st.imFont: xft:Fira Code:size=10,xft:TakaoPGothic,xft:Noto Sans CJK JP,xft:Noto Color Emoji

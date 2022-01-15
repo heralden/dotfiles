@@ -1,6 +1,6 @@
 " Core
 set nocompatible
-syntax enable
+"syntax enable "Don't use together with treesitter
 filetype plugin on
 filetype plugin indent on
 set backupcopy=yes
@@ -120,7 +120,6 @@ call plug#begin()
   Plug 'jiangmiao/auto-pairs', { 'tag': 'v2.0.0' }
   " JavaScript
   Plug 'kchmck/vim-coffee-script'
-  Plug 'Quramy/vim-js-pretty-template'
   Plug 'prettier/vim-prettier', {
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
   " HTML
@@ -129,7 +128,6 @@ call plug#begin()
   " JSON
   Plug 'tpope/vim-jdaddy'
   " CSS
-  Plug 'cakebaker/scss-syntax.vim'
   Plug 'ap/vim-css-color', {
         \ 'commit': '2411b84' }
   " Clojure
@@ -166,10 +164,31 @@ call plug#begin()
   Plug 'hrsh7th/nvim-cmp'
   Plug 'hrsh7th/cmp-vsnip'
   Plug 'hrsh7th/vim-vsnip'
+  " Treesitter
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 call plug#end()
 
-set background=light
-colorscheme PaperColor
+" Treesitter
+" TSInstall bash c c_sharp clojure comment commonlisp cpp css dart dockerfile elixir erlang fennel go gomod gowork graphql html http java javascript jsdoc json julia kotlin latex lua make nix ocaml perl php python r regex ruby rust scala scss sparql svelte toml tsx turtle typescript vim vue yaml
+lua << EOF
+  require'nvim-treesitter.configs'.setup {
+    -- One of "all", "maintained" (parsers with maintainers), or a list of languages
+    ensure_installed = "maintained",
+
+    -- Install languages synchronously (only applied to `ensure_installed`)
+    sync_install = false,
+
+    highlight = {
+      enable = true,
+      disable = { "clojure" },
+      -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+      -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+      -- Using this option may slow down your editor, and you may see some duplicate highlights.
+      -- Instead of true it can also be a list of languages
+      additional_vim_regex_highlighting = false,
+    },
+  }
+EOF
 
 " nvim-cmp and lspconfig
 lua << EOF
@@ -200,7 +219,7 @@ lua << EOF
     },
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
-      { name = 'vsnip' }, -- For vsnip users.
+      { name = 'vsnip' },
     }, {
       { name = 'buffer' },
     })
@@ -241,7 +260,7 @@ lua << EOF
     buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
     buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
     buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    --buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
     buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
     buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
     buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
@@ -281,18 +300,27 @@ lua << EOF
   require'lspconfig'.yamlls.setup            { capabilities = capabilities, flags = flags, on_attach = on_attach}
 EOF
 
-" pretty-template
-if has('autocmd')
-  " Support `-` in css property names
-  augroup VimCSS3Syntax
-    autocmd!
-    autocmd FileType css setlocal iskeyword+=-
-  augroup END
-
-  call jspretmpl#register_tag('gql', 'graphql')
-  autocmd FileType javascript.jsx JsPreTmpl
-  autocmd FileType javascript JsPreTmpl
-endif
+set background=light
+colorscheme PaperColor
+" Make papercolor look better with treesitter
+highlight TSPunctDelimiter guifg=#00ad7f
+highlight TSPunctSpecial guifg=#004e3d
+highlight TSTagDelimiter guifg=#004257
+highlight TSConstBuiltin guifg=#4c3d3d
+highlight TSConstructor gui=Bold guifg=#533636
+highlight TSVariableBuiltin guifg=#5d2d2d
+highlight TSStringRegex guifg=#855f00
+highlight TSLiteral guifg=#508500
+highlight TSMethod gui=italic guifg=#573232
+highlight TSField guifg=#004785
+highlight TSProperty guifg=#002885
+highlight TSParameterReference guifg=#005685
+highlight TSAttribute guifg=#185d95
+highlight TSTag guifg=#305b7e
+highlight TSKeywordFunction guifg=#40596d
+highlight TSKeywordOperator guifg=#1ac9ff
+highlight TSTypeBuiltin guifg=#b0277d
+highlight TSNamespace guifg=#b71f1f
 
 " " Slime
 let g:slime_target = "neovim"
@@ -380,6 +408,7 @@ let g:clap_layout = {'relative': 'editor'}
 
 " vim_current_word
 let g:vim_current_word#highlight_current_word = 0
+hi CurrentWordTwins ctermfg=NONE ctermbg=NONE cterm=underline
 
 " vim-better-whitespace
 " Paying attention to whitespace is silly.

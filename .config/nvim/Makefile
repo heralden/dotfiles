@@ -1,5 +1,5 @@
 install-packages:
-	sudo xbps-install cargo gopls nodejs python3-pip racket
+	sudo xbps-install cargo gopls nodejs python3-pip racket ripgrep
 
 setup: export TFLINT_INSTALL_PATH = $(HOME)/bin
 setup:

@@ -144,8 +144,6 @@ call plug#begin()
     \ }
   " Elm
   Plug 'elmcast/elm-vim'
-  " " (Optional) Multi-entry selection UI.
-  Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }
   Plug 'dominikduda/vim_current_word'
   Plug 'guns/vim-sexp', {'for': 'clojure'}
   Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
@@ -166,6 +164,10 @@ call plug#begin()
   Plug 'hrsh7th/vim-vsnip'
   " Treesitter
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+  " Telescope
+  Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope.nvim'
 call plug#end()
 
 " Treesitter
@@ -180,7 +182,7 @@ lua << EOF
 
     highlight = {
       enable = true,
-      disable = { "clojure" },
+      disable = { "clojure", "make" },
       -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
       -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
       -- Using this option may slow down your editor, and you may see some duplicate highlights.
@@ -398,14 +400,6 @@ let g:tmuxline_powerline_separators = 0
 " Quickly cancel find
 map ' <Plug>(clever-f-reset)
 
-" vim-clap
-let g:clap_theme = 'solarized_light'
-let g:clap_enable_background_shadow = v:false " makes color scheme of background look like shit
-" let g:clap_preview_direction = 'UD'
-let g:clap_layout = {'relative': 'editor'}
-" let g:clap_enable_icon = 0
-" let g:clap_provider_grep_enable_icon = 0
-
 " vim_current_word
 let g:vim_current_word#highlight_current_word = 0
 hi CurrentWordTwins ctermfg=NONE ctermbg=NONE cterm=underline
@@ -554,20 +548,21 @@ nnoremap <Leader>Q :q<CR>
 nnoremap <Leader><C-s><C-s> :mks! ~/.config/nvim/sessions/_quicksave<CR>
 nnoremap <Leader><C-s><C-l> :so ~/.config/nvim/sessions/_quicksave<CR>
 
-" clap
-nnoremap <Leader>ff :Clap files<CR>
-nnoremap <Leader>fl :Clap blines<CR>
-nnoremap <Leader>fc :Clap command<CR>
-nnoremap <Leader>fh :Clap command_history<CR>
-nnoremap <Leader>fg :Clap grep2<CR>
-nnoremap <Leader>fG :Clap grep2 ++query=<cword><CR>
-nnoremap <Leader>f<C-g> :Clap grep2 ++query=@visual<CR>
-nnoremap <Leader>fj :Clap jumps<CR>
-nnoremap <Leader>fL :Clap lines<CR>
-nnoremap <Leader>fb :Clap buffers<CR>
-nnoremap <Leader>fq :Clap quickfix<CR>
-nnoremap <Leader>fr :Clap registers<CR>
-nnoremap <Leader>fy :Clap yanks<CR>
+" telescope
+nnoremap <leader>fF <cmd>Telescope resume<cr>
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fc <cmd>Telescope commands<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fG <cmd>Telescope grep_string<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fs <cmd>Telescope search_history<cr>
+nnoremap <leader>fm <cmd>Telescope man_pages<cr>
+nnoremap <leader>fq <cmd>Telescope quickfix<cr>
+nnoremap <leader>fj <cmd>Telescope jumplist<cr>
+nnoremap <leader>fr <cmd>Telescope registers<cr>
+nnoremap <leader>fl <cmd>Telescope current_buffer_fuzzy_find<cr>
+nnoremap <leader>ft <cmd>Telescope treesitter<cr>
 
 " Quickly open terminal in directory of file
 " nnoremap <Leader>C :terminal $SHELL -c "cd `dirname %`; $SHELL"<CR>

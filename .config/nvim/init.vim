@@ -302,6 +302,26 @@ lua << EOF
   require'lspconfig'.yamlls.setup            { capabilities = capabilities, flags = flags, on_attach = on_attach}
 EOF
 
+" filetype-specific autocompletion
+autocmd FileType markdown lua require('cmp').setup.buffer {
+      \ sources = { { name = 'path' } } }
+autocmd FileType mail lua require('cmp').setup.buffer {
+      \ sources = {} }
+
+" telescope mappings
+lua << EOF
+require('telescope').setup{
+  defaults = {
+    mappings = {
+      i = {
+        ["<C-j>"] = "move_selection_next",
+        ["<C-k>"] = "move_selection_previous",
+      }
+    }
+  },
+}
+EOF
+
 set background=light
 colorscheme PaperColor
 " Make papercolor look better with treesitter
@@ -480,7 +500,7 @@ nnoremap <Leader>gC :Gcommit<CR>
 nnoremap <Leader>gd :Gdiff<CR>
 nnoremap <Leader>gD :Git! diff --cached<CR>
 nnoremap <Leader>gL :Glog --<CR>
-nnoremap <Leader>gl :0Glog<CR>
+nnoremap <Leader>gl :Git log<CR>
 nnoremap <Leader>gb :Gblame<CR>
 nnoremap <Leader>gW :Gwrite<CR>
 nnoremap <Leader>gm :Gmerge 

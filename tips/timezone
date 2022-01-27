@@ -1,0 +1,4 @@
+# Edit /etc/rc.conf
+TIMEZONE=Europe/Oslo
+# Update /etc/localtime symlink
+sudo ln -sf /usr/share/zoneinfo/Europe/Oslo /etc/localtime

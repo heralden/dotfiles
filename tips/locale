@@ -1,0 +1,2 @@
+# Uncomment the locale from /etc/default/libc-locales
+sudo xbps-reconfigure --force glibc-locales

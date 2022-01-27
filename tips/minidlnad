@@ -1,0 +1,3 @@
+# My files haven't updated!
+sudo minidlnad -R
+sudo sv restart minidlnad

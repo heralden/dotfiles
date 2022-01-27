@@ -1,0 +1,2 @@
+ssh-agent /usr/bin/zsh
+ssh-add

@@ -407,15 +407,6 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#formatter = 'jsformatter' " show parent directory if filename is index.js
 let g:airline_section_y = 0 " do not display file encoding[fileformat]
 let g:airline_theme = 'papercolor'
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {
-        \ 'maxlinenr': ' L',
-        \ 'readonly': 'RO',
-        \ 'linenr': '',
-        \ 'branch': 'BR',
-        \ 'whitespace': 'WS'}
-endif
-
 let g:tmuxline_powerline_separators = 0
 
 " Clever-f

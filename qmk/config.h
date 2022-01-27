@@ -35,6 +35,7 @@
 
 #define ONESHOT_TAP_TOGGLE 2
 #define ONESHOT_TIMEOUT 2000
+#define PERMISSIVE_HOLD
 
 #define EE_HANDS
 // Not necessary with EE_HANDS and: qmk flash -bl avrdude-split-right

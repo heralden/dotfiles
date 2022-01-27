@@ -42,6 +42,7 @@ enum layers {
 
 #define CTL_ESC     MT(MOD_LCTL, KC_ESC)
 #define ALT_ENT     MT(MOD_LALT, KC_ENT)
+#define GUI_CAP     MT(MOD_LGUI, KC_CAPS)
 
 #define NEXT_TAB    LCTL(KC_TAB)
 #define PREV_TAB    RCS(KC_TAB)
@@ -73,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT(
      KC_GRV  , KC_Q ,  KC_W   ,  KC_E  ,   KC_R ,   KC_T ,                                        KC_Y   ,  KC_U ,  KC_I ,   KC_O ,  KC_P , KC_MINS,
      OSM_SFT , KC_A ,  KC_S   ,  KC_D  ,   KC_F ,   KC_G ,                                        KC_H   ,  KC_J ,  KC_K ,   KC_L ,KC_SCLN, OSM_SFT,
-     KC_BSLS , KC_Z ,  KC_X   ,  KC_C  ,   KC_V ,   KC_B , CTL_ESC, KC_TAB,     KC_CAPS, ALT_ENT, KC_N   ,  KC_M ,KC_COMM, KC_DOT ,KC_QUOT, KC_SLSH,
+     KC_BSLS , KC_Z ,  KC_X   ,  KC_C  ,   KC_V ,   KC_B , CTL_ESC, KC_TAB,     GUI_CAP, ALT_ENT, KC_N   ,  KC_M ,KC_COMM, KC_DOT ,KC_QUOT, KC_SLSH,
                                  KC_APP,OSM_LAG , OSM_GUI, KC_BSPC, FN    ,     NUMSYM , KC_SPC ,OSM_RCTL,OSM_LALT,KC_PAUS
     ),
 
@@ -166,31 +167,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
 
     // Tap OSM_SFT twice to toggle caps lock.
-    case OSM(MOD_LSFT):
-      if ((record->tap.count == 2) && (record->event.pressed)) {
-          tap_code16(KC_CAPS);
-          return false;
-      }
-      return true;
+    /* case OSM(MOD_LSFT): */
+    /*   if ((record->tap.count == 2) && (record->event.pressed)) { */
+    /*       tap_code16(KC_CAPS); */
+    /*       return false; */
+    /*   } */
+    /*   return true; */
 
     // Disable OSM double tap toggle for all others.
     case OSM(MOD_LGUI):
     case OSM(MOD_RGUI):
-      if ((record->tap.count >= 2) && (record->event.pressed)) {
-          return false;
-      }
-      return true;
     case OSM(MOD_HYPR):
-      if ((record->tap.count >= 2) && (record->event.pressed)) {
-          return false;
-      }
-      return true;
     case OSM(MOD_LCTL):
     case OSM(MOD_RCTL):
-      if ((record->tap.count >= 2) && (record->event.pressed)) {
-          return false;
-      }
-      return true;
     case OSM(MOD_LALT):
     case OSM(MOD_RALT):
       if ((record->tap.count >= 2) && (record->event.pressed)) {

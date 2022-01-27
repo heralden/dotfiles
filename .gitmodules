@@ -1,0 +1,3 @@
+[submodule ".config/kitty/papercolor-kitty"]
+	path = .config/kitty/papercolor-kitty
+	url = https://github.com/craffate/papercolor-kitty.git

@@ -122,7 +122,7 @@ ctrl + cmd - z : yabai -m window --focus stack.prev
 ctrl + cmd - c : yabai -m window --focus stack.next
 
 # start applications
-ctrl + cmd - return : /Applications/iTerm.app/Contents/MacOS/iTerm2
+ctrl + cmd - return : "${HOME}"/scripts/open_iterm2.sh
 
 # switch browser tabs
 ctrl + cmd - g : skhd -k "ctrl + shift - tab"

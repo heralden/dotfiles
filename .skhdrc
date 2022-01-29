@@ -1,0 +1,133 @@
+# focus window
+ctrl + cmd - h : yabai -m window --focus west
+ctrl + cmd - l : yabai -m window --focus east
+ctrl + cmd - j : yabai -m window --focus south
+ctrl + cmd - k : yabai -m window --focus north
+
+# cycle window
+ctrl + cmd - 0x2B : yabai -m window --focus prev # comma
+ctrl + cmd - 0x2F : yabai -m window --focus next # period
+
+# cycle floating windows
+# Not working (maybe needs scripting addon?)
+# ctrl + cmd - r : yabai -m window --focus "$(yabai -m query --windows | jq -re "sort_by(.display, .frame.x, .frame.y, .id) | map(select(.visible == 1 and .subrole != \"AXUnknown\")) | reverse | nth(index(map(select(.focused == 1))) - 1).id")"
+
+# swap managed window
+ctrl + alt + cmd - h : yabai -m window --swap west
+ctrl + alt + cmd - l : yabai -m window --swap east
+ctrl + alt + cmd - j : yabai -m window --swap north
+ctrl + alt + cmd - k : yabai -m window --swap south
+
+# move managed window
+# shift + cmd - h : yabai -m window --warp east
+
+# balance size of windows
+ctrl + alt + cmd - b : yabai -m space --balance
+
+# make floating window fill screen
+# shift + alt - up     : yabai -m window --grid 1:1:0:0:1:1
+
+# make floating window fill left-half of screen
+# shift + alt - left   : yabai -m window --grid 1:2:0:0:1:1
+
+# create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
+# shift + cmd - n : yabai -m space --create && \
+#                   index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
+#                   yabai -m window --space "${index}" && \
+#                   yabai -m space --focus "${index}"
+
+# fast focus desktop
+# cmd + alt - x : yabai -m space --focus recent
+
+# NOTE: Requires scripting addon. Use instead:
+# System Preferences.app -> Keyboard -> Shortcuts -> Mission Control
+
+# send window to desktop
+ctrl + alt + cmd - i : yabai -m window --space prev
+ctrl + alt + cmd - o : yabai -m window --space next
+ctrl + alt + cmd - 1 : yabai -m window --space 1
+ctrl + alt + cmd - 2 : yabai -m window --space 2
+ctrl + alt + cmd - 3 : yabai -m window --space 3
+ctrl + alt + cmd - 4 : yabai -m window --space 4
+ctrl + alt + cmd - 5 : yabai -m window --space 5
+ctrl + alt + cmd - 6 : yabai -m window --space 6
+
+# send window to desktop and follow focus
+# shift + cmd - z : yabai -m window --space next; yabai -m space --focus next
+# shift + cmd - 2 : yabai -m window --space  2; yabai -m space --focus 2
+
+# focus monitor
+ctrl + cmd - p : yabai -m display --focus prev
+ctrl + cmd - n : yabai -m display --focus next
+
+# send window to monitor and follow focus
+ctrl + alt + cmd - p  : yabai -m window --display prev
+ctrl + alt + cmd - n  : yabai -m window --display next
+
+# send window to monitor and follow focus
+# ctrl + cmd - c  : yabai -m window --display next; yabai -m display --focus next
+# ctrl + cmd - 1  : yabai -m window --display 1; yabai -m display --focus 1
+
+# move floating window
+# shift + ctrl - a : yabai -m window --move rel:-20:0
+# shift + ctrl - s : yabai -m window --move rel:0:20
+
+# increase window size
+ctrl + cmd + shift - h : yabai -m window --resize left:-20:0
+ctrl + cmd + shift - j : yabai -m window --resize bottom:0:20
+ctrl + cmd + shift - k : yabai -m window --resize top:0:-20
+ctrl + cmd + shift - l : yabai -m window --resize right:20:0
+
+# decrease window size
+ctrl + alt + cmd + shift - h : yabai -m window --resize right:-20:0
+ctrl + alt + cmd + shift - j : yabai -m window --resize top:0:20
+ctrl + alt + cmd + shift - k : yabai -m window --resize bottom:0:-20
+ctrl + alt + cmd + shift - l : yabai -m window --resize left:20:0
+
+# set insertion point in focused container
+ctrl + cmd - w : yabai -m window --insert north
+ctrl + cmd - a : yabai -m window --insert west
+ctrl + cmd - s : yabai -m window --insert south
+ctrl + cmd - d : yabai -m window --insert east
+
+# toggle window zoom
+# alt - d : yabai -m window --toggle zoom-parent
+ctrl + cmd - f : yabai -m window --toggle zoom-fullscreen
+ctrl + alt + cmd - f : yabai -m window --toggle native-fullscreen
+
+# toggle window split type
+# alt - e : yabai -m window --toggle split
+
+# float / unfloat window and center on screen
+ctrl + alt + cmd - r : yabai -m window --toggle float;\
+                 yabai -m window --grid 4:4:1:1:2:2
+
+# toggle sticky(+float), topmost, picture-in-picture
+# alt - p : yabai -m window --toggle sticky;\
+#           yabai -m window --toggle topmost;\
+#           yabai -m window --toggle pip
+
+# rotate tree clockwise
+ctrl + alt + cmd + shift - r : yabai -m space --rotate 270
+
+# flip tree horizontally
+ctrl + alt + cmd - y : yabai -m space --mirror x-axis
+
+# flip tree vertically
+ctrl + alt + cmd - x : yabai -m space --mirror y-axis
+
+# stacks
+ctrl + cmd - x : yabai -m window --insert stack
+ctrl + cmd - z : yabai -m window --focus stack.prev
+ctrl + cmd - c : yabai -m window --focus stack.next
+
+# start applications
+ctrl + cmd - return : /Applications/iTerm.app/Contents/MacOS/iTerm2
+
+# switch browser tabs
+ctrl + cmd - g : skhd -k "ctrl + shift - tab"
+ctrl + cmd - b : skhd -k "ctrl - tab"
+
+# lock screen
+# TODO: Find keycode for Pause.
+# ctrl + cmd - Pause : skhd -k "ctrl + cmd - q"

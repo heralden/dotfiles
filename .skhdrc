@@ -38,6 +38,8 @@ ctrl + alt + cmd - b : yabai -m space --balance
 
 # fast focus desktop
 # cmd + alt - x : yabai -m space --focus recent
+# ctrl + cmd - i : yabai -m space --focus prev
+# ctrl + cmd - o : yabai -m space --focus next
 
 # NOTE: Requires scripting addon. Use instead:
 # System Preferences.app -> Keyboard -> Shortcuts -> Mission Control
@@ -57,8 +59,8 @@ ctrl + alt + cmd - 6 : yabai -m window --space 6
 # shift + cmd - 2 : yabai -m window --space  2; yabai -m space --focus 2
 
 # focus monitor
-ctrl + cmd - p : yabai -m display --focus prev
-ctrl + cmd - n : yabai -m display --focus next
+ctrl + cmd - p : yabai -m display --focus prev || yabai -m display --focus last
+ctrl + cmd - n : yabai -m display --focus next || yabai -m display --focus first
 
 # send window to monitor and follow focus
 ctrl + alt + cmd - p  : yabai -m window --display prev

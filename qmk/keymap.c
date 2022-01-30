@@ -38,11 +38,13 @@ enum layers {
 #define OSM_RCTL    OSM(MOD_RCTL)
 #define OSM_LALT    OSM(MOD_LALT)
 #define OSM_LAG     OSM(MOD_LGUI | MOD_LALT)
+#define OSM_LCG     OSM(MOD_LGUI | MOD_LCTL)
 #define OSM_GUI     OSM(MOD_LGUI)
 
-#define CTL_ESC     MT(MOD_LCTL, KC_ESC)
-#define ALT_ENT     MT(MOD_LALT, KC_ENT)
+#define GUI_ESC     MT(MOD_LGUI, KC_ESC)
+#define CTL_TAB     MT(MOD_LCTL, KC_TAB)
 #define GUI_CAP     MT(MOD_LGUI, KC_CAPS)
+#define ALT_ENT     MT(MOD_LALT, KC_ENT)
 
 #define NEXT_TAB    LCTL(KC_TAB)
 #define PREV_TAB    RCS(KC_TAB)
@@ -68,14 +70,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |  \  |  |   Z  |   X  |   C  |   V  |   B  | Esc  | Tab  |  |CapsLk| Enter|   N  |   M  | ,  < | . >  | '  " |  /  ?  |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        | APP  | OSM  | OSM  | Back | OSL  |  | OSL  | Space| OSM  | OSM | Pause|
- *                        |      | LAG  | GUI  | Space| FN   |  |NUMSYM|      | RCtl | LAlt|      |
+ *                        |      | LAG  | LCG  | Space| FN   |  |NUMSYM|      | RCtl | LAlt|      |
  *                        `----------------------------------'  `----------------------------------'
  */
     [_QWERTY] = LAYOUT(
      KC_GRV  , KC_Q ,  KC_W   ,  KC_E  ,   KC_R ,   KC_T ,                                        KC_Y   ,  KC_U ,  KC_I ,   KC_O ,  KC_P , KC_MINS,
      OSM_SFT , KC_A ,  KC_S   ,  KC_D  ,   KC_F ,   KC_G ,                                        KC_H   ,  KC_J ,  KC_K ,   KC_L ,KC_SCLN, OSM_SFT,
-     KC_BSLS , KC_Z ,  KC_X   ,  KC_C  ,   KC_V ,   KC_B , CTL_ESC, KC_TAB,     GUI_CAP, ALT_ENT, KC_N   ,  KC_M ,KC_COMM, KC_DOT ,KC_QUOT, KC_SLSH,
-                                 KC_APP,OSM_LAG , OSM_GUI, KC_BSPC, FN    ,     NUMSYM , KC_SPC ,OSM_RCTL,OSM_LALT,KC_PAUS
+     KC_BSLS , KC_Z ,  KC_X   ,  KC_C  ,   KC_V ,   KC_B , GUI_ESC, CTL_TAB,     GUI_CAP, ALT_ENT, KC_N   ,  KC_M ,KC_COMM, KC_DOT ,KC_QUOT, KC_SLSH,
+                                 KC_APP,OSM_LAG , OSM_LCG, KC_BSPC, FN     ,     NUMSYM , KC_SPC ,OSM_RCTL,OSM_LALT,KC_PAUS
     ),
 
 /*

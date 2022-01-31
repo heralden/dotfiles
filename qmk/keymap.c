@@ -49,9 +49,17 @@ enum layers {
 #define NEXT_TAB    LCTL(KC_TAB)
 #define PREV_TAB    RCS(KC_TAB)
 
-#define NOR_AE      RALT(KC_Z)
-#define NOR_OE      RALT(KC_L)
-#define NOR_AA      RALT(KC_W)
+#define MACBEGLN    LCTL(KC_A)
+#define MACENDLN    LCTL(KC_E)
+
+// MacOS
+#define NOR_AE      RALT(KC_QUOTE)
+#define NOR_OE      RALT(KC_O)
+#define NOR_AA      RALT(KC_A)
+// Linux
+/* #define NOR_AE      RALT(KC_Z) */
+/* #define NOR_OE      RALT(KC_L) */
+/* #define NOR_AA      RALT(KC_W) */
 
 // Note: LAlt/Enter (ALT_ENT) is not the same thing as the keyboard shortcut Alt+Enter.
 // The notation `mod/tap` denotes a key that activates the modifier `mod` when held down, and
@@ -105,21 +113,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Layer: FN
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |        |      | Mute | Prev | Next | Play |                              | Play |   {  |   }  |   [  |   ]  |   Å    |
+ * |  F16   | F13  | Mute | Prev | Next | Play |                              | Play |   {  |   }  |   [  |   ]  |   Å    |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        |      | Vol+ | Home | PgUp |PrvTab|                              | Left | Down |  Up  | Right|   Ø  |   Æ    |
+ * |  F17   |BriUp | Vol+ | Home | PgUp |PrvTab|                              | Left | Down |  Up  | Right|   Ø  |   Æ    |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |      | Vol- | End  | PgDn |NxtTab|      |      |  |      |      | Home | End  |   (  |   )  |   =  |   +    |
+ * |  F18   |BriDn | Vol- | End  | PgDn |NxtTab|      |      |  |      |      | BegLn| EndLn|   (  |   )  |   =  |   +    |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
 	  [_FN] = LAYOUT(
-     KC_NO   , KC_NO , KC_MUTE, KC_MPRV, KC_MNXT, KC_MPLY ,                                          KC_MPLY, KC_LCBR,KC_RCBR, KC_LBRC,KC_RBRC, NOR_AA,
-     KC_NO   , KC_NO , KC_VOLU, KC_HOME, KC_PGUP, PREV_TAB,                                         KC_LEFT, KC_DOWN, KC_UP , KC_RGHT,NOR_OE , NOR_AE,
-     KC_NO   , KC_NO , KC_VOLD, KC_END , KC_PGDN, NEXT_TAB, KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS, KC_HOME, KC_END ,KC_LPRN, KC_RPRN,KC_EQL , KC_PLUS,
-                                KC_TRNS, KC_TRNS, KC_TRNS , KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+     KC_F16  , KC_F13 , KC_MUTE, KC_MPRV, KC_MNXT, KC_MPLY ,                                         KC_MPLY, KC_LCBR,KC_RCBR, KC_LBRC,KC_RBRC, NOR_AA,
+     KC_F17  , KC_BRMU, KC_VOLU, KC_HOME, KC_PGUP, PREV_TAB,                                         KC_LEFT, KC_DOWN, KC_UP , KC_RGHT,NOR_OE , NOR_AE,
+     KC_F18  , KC_BRMD, KC_VOLD, KC_END , KC_PGDN, NEXT_TAB, KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS,MACBEGLN,MACENDLN,KC_LPRN, KC_RPRN,KC_EQL , KC_PLUS,
+                                 KC_TRNS, KC_TRNS, KC_TRNS , KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
     ),
 
 /*

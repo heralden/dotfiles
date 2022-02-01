@@ -602,14 +602,14 @@ nnoremap <Leader>hs :echo "name: hi<"
   \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"bg") . ">"<CR>
 
 let g:clipboard = {
-  \   'name': 'xclip-xfce4-clipman',
+  \   'name': 'unnamed',
   \   'copy': {
-  \      '+': 'xclip -selection clipboard',
-  \      '*': 'xclip -selection clipboard',
+  \      '+': 'pbcopy',
+  \      '*': 'pbcopy',
   \    },
   \   'paste': {
-  \      '+': 'xclip -selection clipboard -o',
-  \      '*': 'xclip -selection clipboard -o',
+  \      '+': 'pbpaste',
+  \      '*': 'pbpaste',
   \   },
   \   'cache_enabled': 1,
   \ }

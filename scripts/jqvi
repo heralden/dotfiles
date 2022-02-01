@@ -1,0 +1,2 @@
+#!/bin/sh
+cat /dev/stdin | jq | nvim -c 'set filetype=json'

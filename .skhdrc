@@ -15,8 +15,8 @@ ctrl + cmd - 0x2F : yabai -m window --focus next # period
 # swap managed window
 ctrl + alt + cmd - h : yabai -m window --swap west
 ctrl + alt + cmd - l : yabai -m window --swap east
-ctrl + alt + cmd - j : yabai -m window --swap north
-ctrl + alt + cmd - k : yabai -m window --swap south
+ctrl + alt + cmd - j : yabai -m window --swap south
+ctrl + alt + cmd - k : yabai -m window --swap north
 
 # move managed window
 # shift + cmd - h : yabai -m window --warp east
@@ -47,12 +47,20 @@ ctrl + alt + cmd - b : yabai -m space --balance
 # send window to desktop
 ctrl + alt + cmd - i : yabai -m window --space prev
 ctrl + alt + cmd - o : yabai -m window --space next
+
 ctrl + alt + cmd - 1 : yabai -m window --space 1
 ctrl + alt + cmd - 2 : yabai -m window --space 2
 ctrl + alt + cmd - 3 : yabai -m window --space 3
 ctrl + alt + cmd - 4 : yabai -m window --space 4
 ctrl + alt + cmd - 5 : yabai -m window --space 5
 ctrl + alt + cmd - 6 : yabai -m window --space 6
+
+ctrl + alt + cmd - f1 : yabai -m window --space 7
+ctrl + alt + cmd - f2 : yabai -m window --space 8
+ctrl + alt + cmd - f3 : yabai -m window --space 9
+ctrl + alt + cmd - f4 : yabai -m window --space 10
+ctrl + alt + cmd - f5 : yabai -m window --space 11
+ctrl + alt + cmd - f6 : yabai -m window --space 12
 
 # send window to desktop and follow focus
 # shift + cmd - z : yabai -m window --space next; yabai -m space --focus next
@@ -124,6 +132,7 @@ ctrl + cmd - x : yabai -m window --focus stack.next || yabai -m window --focus s
 
 # start applications
 ctrl + cmd - return : "${HOME}"/scripts/open_iterm2.sh
+ctrl + cmd - m : open -na /Applications/Firefox.app
 
 # trigger other hotkeys
 ## copy and paste
@@ -141,4 +150,4 @@ ctrl + cmd - q : skhd -k "cmd - q"
 ## toggle focus dock
 f18 : skhd -k "ctrl - f3"
 ## toggle mission control
-f16 : skhd -k "ctrl - up"
+f16 : skhd -k "ctrl - up" && cliclick -r w:200 m:0,0

@@ -92,11 +92,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Layer: Numbers & Symbols
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * | Insert |  !   |   @  |   #  |   $  |   %  |                              |   ^  |   &  |   *  |   (  |   )  |  -  _  |
+ * | Insert |   !  |   @  |   #  |   $  |   %  |                              |   ^  |   &  |   *  |   (  |   )  |  -  _  |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |PrntScrn|  1   |   2  |   3  |   4  |   5  |                              |   6  |   7  |   8  |   9  |   0  |  ?  /  |
+ * |PrntScrn|   1  |   2  |   3  |   4  |   5  |                              |   6  |   7  |   8  |   9  |   0  |  /  ?  |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |ScrllLck|  F1  |  F2  |  F3  |  F4  |  F5  |Delete|      |  |      |      | Space| Space| < ,  | > .  | + =  |    +   |
+ * |ScrllLck|  F1  |  F2  |  F3  |  F4  |  F5  |Delete|      |  |      |      |  F6  |Space | < ,  | > .  | + =  |    +   |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        |      |      |      |      | OSL  |  |      |      |      |      |      |
  *                        |      |      |      |      | FKEYS|  |      |      |      |      |      |
@@ -105,7 +105,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_NUMSYM] = LAYOUT(
      KC_INS  ,KC_EXLM, KC_AT ,KC_HASH, KC_DLR , KC_PERC,                                      KC_CIRC, KC_AMPR,KC_ASTR, KC_LPRN,KC_RPRN, KC_MINS,
      KC_PSCR ,KC_1   , KC_2  ,KC_3   , KC_4   , KC_5   ,                                      KC_6   , KC_7   ,KC_8   , KC_9   ,KC_0   , KC_SLSH,
-     KC_SLCK ,KC_F1  , KC_F2 ,KC_F3  , KC_F4  , KC_F5  , KC_DEL, KC_TRNS,    KC_TRNS, KC_TRNS,KC_SPC , KC_SPC ,KC_COMM, KC_DOT ,KC_EQL , KC_PLUS,
+     KC_SLCK ,KC_F1  , KC_F2 ,KC_F3  , KC_F4  , KC_F5  , KC_DEL, KC_TRNS,    KC_TRNS, KC_TRNS,KC_F6  , KC_SPC ,KC_COMM, KC_DOT ,KC_EQL , KC_PLUS,
                               KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, FKEYS,     KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS,KC_TRNS
     ),
 

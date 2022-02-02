@@ -487,15 +487,12 @@ nmap <LocalLeader>er <Plug>(iced_eval_and_replace)<Plug>(sexp_inner_element)
 nnoremap <Leader>gs :belowright :Git<CR>
 nnoremap <Leader>gvs :vertical :Git<CR>
 nnoremap <Leader>gi :Git config --list<CR>
-nnoremap <Leader>gC :Gcommit<CR>
-nnoremap <Leader>gd :Gdiff<CR>
+nnoremap <Leader>gd :Git diff<CR>
 nnoremap <Leader>gD :Git! diff --cached<CR>
-nnoremap <Leader>gL :Glog --<CR>
 nnoremap <Leader>gl :Git log<CR>
-nnoremap <Leader>gb :Gblame<CR>
-nnoremap <Leader>gW :Gwrite<CR>
-nnoremap <Leader>gm :Gmerge 
-nnoremap <Leader>gr :Grebase 
+nnoremap <Leader>gb :Git blame<CR>
+nnoremap <Leader>gm :Git merge
+nnoremap <Leader>gr :Git rebase
 nnoremap <Leader>gc :Git checkout 
 nnoremap <Leader>gB :Git branch 
 nnoremap <Leader>g<C-p> :Git push -u origin HEAD<CR>

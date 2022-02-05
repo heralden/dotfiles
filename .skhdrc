@@ -37,10 +37,9 @@ ctrl + alt + cmd - b : yabai -m space --balance
 #                   yabai -m space --focus "${index}"
 
 # fast focus desktop
-# cmd + alt - x : yabai -m space --focus recent
+# ctrl + cmd - u : yabai -m space --focus recent
 # ctrl + cmd - i : yabai -m space --focus prev
 # ctrl + cmd - o : yabai -m space --focus next
-
 # NOTE: Requires scripting addon. Use instead:
 # System Preferences.app -> Keyboard -> Shortcuts -> Mission Control
 
@@ -112,6 +111,10 @@ ctrl + cmd - e : yabai -m window --toggle split
 ctrl + alt + cmd - r : yabai -m window --toggle float;\
                  yabai -m window --grid 4:4:1:1:2:2
 
+ctrl + alt + cmd - a : yabai -m space --layout bsp
+ctrl + alt + cmd - s : yabai -m space --layout stack
+ctrl + alt + cmd - d : yabai -m space --layout float
+
 # toggle sticky(+float), topmost, picture-in-picture
 # alt - p : yabai -m window --toggle sticky;\
 #           yabai -m window --toggle topmost;\
@@ -150,4 +153,4 @@ ctrl + cmd - q : skhd -k "cmd - q"
 ## toggle focus dock
 f18 : skhd -k "ctrl - f3"
 ## toggle mission control
-f16 : skhd -k "ctrl - up" && cliclick -r w:200 m:0,0
+f16 : skhd -k "ctrl - up" && cliclick -r w:250 m:0,0

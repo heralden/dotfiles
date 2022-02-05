@@ -533,6 +533,10 @@ nnoremap <Leader><C-t> :NERDTree<CR>
 nnoremap <Leader><C-f> :NERDTreeFind<CR>
 nnoremap <Leader>t <C-w>t
 
+" Quickfix
+nnoremap <Leader>ww :copen<CR>
+nnoremap <Leader>wq :cclose<CR>
+
 " Buffers
 nnoremap <Leader>l :ls<CR>
 nnoremap <Leader>n :bn<CR>
@@ -549,7 +553,6 @@ nnoremap <Leader>8 :8b<CR>
 nnoremap <Leader>9 :9b<CR>
 nnoremap <Leader>0 :10b<CR>
 nnoremap <Leader>q :bdelete<CR>
-nnoremap <Leader>w :cclose<CR>
 " :bd without closing window
 nnoremap <Leader>d :Bdelete<CR>
 nnoremap <Leader>Q :q<CR>

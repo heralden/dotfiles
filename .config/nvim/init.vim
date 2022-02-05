@@ -415,7 +415,7 @@ map ' <Plug>(clever-f-reset)
 
 " vim_current_word
 let g:vim_current_word#highlight_current_word = 0
-hi CurrentWordTwins ctermfg=NONE ctermbg=NONE cterm=underline
+hi CurrentWordTwins ctermfg=NONE ctermbg=254 cterm=underline
 
 " vim-better-whitespace
 " Paying attention to whitespace is silly.
@@ -495,6 +495,7 @@ nnoremap <Leader>gm :Git merge
 nnoremap <Leader>gr :Git rebase
 nnoremap <Leader>gc :Git checkout 
 nnoremap <Leader>gB :Git branch 
+nnoremap <Leader>gw :Git switch
 nnoremap <Leader>g<C-p> :Git push -u origin HEAD<CR>
 nnoremap <Leader>gP :Git push<CR>
 nnoremap <Leader>gp :Git pull<CR>

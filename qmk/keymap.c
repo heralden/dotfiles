@@ -35,11 +35,11 @@ enum layers {
 /* #define ALT_ENT  MT(MOD_LALT, KC_ENT) */
 
 #define OSM_SFT     OSM(MOD_LSFT)
+#define OSM_LCTL    OSM(MOD_LCTL)
 #define OSM_RCTL    OSM(MOD_RCTL)
 #define OSM_LALT    OSM(MOD_LALT)
 #define OSM_LAG     OSM(MOD_LGUI | MOD_LALT)
 #define OSM_LCG     OSM(MOD_LGUI | MOD_LCTL)
-#define OSM_GUI     OSM(MOD_LGUI)
 
 #define GUI_ESC     MT(MOD_LGUI, KC_ESC)
 #define CTL_TAB     MT(MOD_LCTL, KC_TAB)
@@ -78,25 +78,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |  \  |  |   Z  |   X  |   C  |   V  |   B  | Esc  | Tab  |  |CapsLk| Enter|   N  |   M  | ,  < | . >  | '  " |  /  ?  |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        | APP  | OSM  | OSM  | Back | OSL  |  | OSL  | Space| OSM  | OSM | Pause|
- *                        |      | LAG  | LCG  | Space| FN   |  |NUMSYM|      | RCtl | LAlt|      |
+ *                        |      | LCtl | LCG  | Space| FN   |  |NUMSYM|      | RCtl | LAlt|      |
  *                        `----------------------------------'  `----------------------------------'
  */
     [_QWERTY] = LAYOUT(
      KC_GRV  , KC_Q ,  KC_W   ,  KC_E  ,   KC_R ,   KC_T ,                                        KC_Y   ,  KC_U ,  KC_I ,   KC_O ,  KC_P , KC_MINS,
      OSM_SFT , KC_A ,  KC_S   ,  KC_D  ,   KC_F ,   KC_G ,                                        KC_H   ,  KC_J ,  KC_K ,   KC_L ,KC_SCLN, OSM_SFT,
-     KC_BSLS , KC_Z ,  KC_X   ,  KC_C  ,   KC_V ,   KC_B , GUI_ESC, CTL_TAB,     GUI_CAP, ALT_ENT, KC_N   ,  KC_M ,KC_COMM, KC_DOT ,KC_QUOT, KC_SLSH,
-                                 KC_APP,OSM_LAG , OSM_LCG, KC_BSPC, FN     ,     NUMSYM , KC_SPC ,OSM_RCTL,OSM_LALT,KC_PAUS
+     KC_BSLS , KC_Z ,  KC_X   ,  KC_C  ,   KC_V ,   KC_B , GUI_ESC, CTL_TAB,     GUI_CAP, ALT_ENT, KC_N  ,  KC_M ,KC_COMM, KC_DOT ,KC_QUOT, KC_SLSH,
+                                 KC_APP,OSM_LCTL, OSM_LCG, KC_BSPC, FN     ,     NUMSYM , KC_SPC ,OSM_RCTL,OSM_LALT,KC_PAUS
     ),
 
 /*
  * Layer: Numbers & Symbols
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * | Insert |   !  |   @  |   #  |   $  |   %  |                              |   ^  |   &  |   *  |   (  |   )  |  -  _  |
+ * | Insert |   !  |   @  |   #  |   $  |   %  |                              |   ^  |   &  |   *  |   (  |   )  |    -   |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |PrntScrn|   1  |   2  |   3  |   4  |   5  |                              |   6  |   7  |   8  |   9  |   0  |  /  ?  |
+ * |PrntScrn|   1  |   2  |   3  |   4  |   5  |                              |   6  |   7  |   8  |   9  |   0  |    +   |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |ScrllLck|  F1  |  F2  |  F3  |  F4  |  F5  |Delete|      |  |      |      |  F6  |Space | < ,  | > .  | + =  |    +   |
+ * |ScrllLck|  F1  |  F2  |  F3  |  F4  |  F5  |Delete|      |  |      |      |  F6  |Space | < ,  | > .  |   =  |    /   |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        |      |      |      |      | OSL  |  |      |      |      |      |      |
  *                        |      |      |      |      | FKEYS|  |      |      |      |      |      |
@@ -104,8 +104,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_NUMSYM] = LAYOUT(
      KC_INS  ,KC_EXLM, KC_AT ,KC_HASH, KC_DLR , KC_PERC,                                      KC_CIRC, KC_AMPR,KC_ASTR, KC_LPRN,KC_RPRN, KC_MINS,
-     KC_PSCR ,KC_1   , KC_2  ,KC_3   , KC_4   , KC_5   ,                                      KC_6   , KC_7   ,KC_8   , KC_9   ,KC_0   , KC_SLSH,
-     KC_SLCK ,KC_F1  , KC_F2 ,KC_F3  , KC_F4  , KC_F5  , KC_DEL, KC_TRNS,    KC_TRNS, KC_TRNS,KC_F6  , KC_SPC ,KC_COMM, KC_DOT ,KC_EQL , KC_PLUS,
+     KC_PSCR ,KC_1   , KC_2  ,KC_3   , KC_4   , KC_5   ,                                      KC_6   , KC_7   ,KC_8   , KC_9   ,KC_0   , KC_PLUS,
+     KC_SLCK ,KC_F1  , KC_F2 ,KC_F3  , KC_F4  , KC_F5  , KC_DEL, KC_TRNS,    KC_TRNS, KC_TRNS,KC_F6  , KC_SPC ,KC_COMM, KC_DOT ,KC_EQL , KC_SLSH,
                               KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, FKEYS,     KC_TRNS, KC_TRNS,KC_TRNS, KC_TRNS,KC_TRNS
     ),
 

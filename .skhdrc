@@ -5,8 +5,14 @@ ctrl + cmd - j : yabai -m window --focus south
 ctrl + cmd - k : yabai -m window --focus north
 
 # cycle window
-ctrl + cmd - 0x2B : yabai -m window --focus prev # comma
-ctrl + cmd - 0x2F : yabai -m window --focus next # period
+## comma
+ctrl + cmd - 0x2B : [[ $(yabai -m query --spaces --space | jq -re '.type') = "stack" ]]\
+                    && $(yabai -m window --focus stack.prev || yabai -m window --focus stack.last)\
+                    || $(yabai -m window --focus prev || yabai -m window --focus last)
+## period
+ctrl + cmd - 0x2F : [[ $(yabai -m query --spaces --space | jq -re '.type') = "stack" ]]\
+                    && $(yabai -m window --focus stack.next || yabai -m window --focus stack.first)\
+                    || $(yabai -m window --focus next || yabai -m window --focus first)
 
 # cycle floating windows
 # Not working (maybe needs scripting addon?)

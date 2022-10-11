@@ -15,8 +15,8 @@
 # yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 
 # global settings
-yabai -m config mouse_follows_focus          on
-yabai -m config focus_follows_mouse          autofocus
+yabai -m config mouse_follows_focus          off
+yabai -m config focus_follows_mouse          off
 yabai -m config window_origin_display        focused
 yabai -m config window_placement             second_child
 yabai -m config window_topmost               off
@@ -50,8 +50,14 @@ yabai -m config window_gap                   6
 yabai -m rule --add app="^Steam$" manage=off
 yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
+yabai -m rule --add app="^Dictionary$" manage=off
+# yabai -m rule --add app="^VirtualDJ$" manage=off
 
 # signals
-yabai -m signal --add event=window_destroyed active=yes action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null"
+## This has the downside of focusing the last focused window when entering native fullscreen, e.g. fullscreening a youtube video.
+# yabai -m signal --add event=window_destroyed active=yes action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null"
+yabai -m signal --add event=window_destroyed action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"
+yabai -m signal --add event=application_terminated action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"
+
 
 echo "yabai configuration loaded.."

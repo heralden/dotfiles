@@ -176,7 +176,7 @@ call plug#end()
 lua << EOF
   require'nvim-treesitter.configs'.setup {
     -- One of "all", "maintained" (parsers with maintainers), or a list of languages
-    ensure_installed = "maintained",
+    ensure_installed = { "bash", "c", "c_sharp", "clojure", "comment", "commonlisp", "cpp", "css", "dart", "dockerfile", "elixir", "erlang", "fennel", "go", "gomod", "gowork", "graphql", "html", "http", "java", "javascript", "jsdoc", "json", "julia", "kotlin", "latex", "lua", "make", "nix", "ocaml", "perl", "php", "python", "r", "regex", "ruby", "rust", "scala", "scss", "sparql", "svelte", "toml", "tsx", "turtle", "typescript", "vim", "vue", "yaml" },
 
     -- Install languages synchronously (only applied to `ensure_installed`)
     sync_install = false,
@@ -291,6 +291,7 @@ lua << EOF
   require'lspconfig'.ocamlls.setup           { capabilities = capabilities, flags = flags, on_attach = on_attach}
   require'lspconfig'.pyright.setup           { capabilities = capabilities, flags = flags, on_attach = on_attach}
   require'lspconfig'.racket_langserver.setup { capabilities = capabilities, flags = flags, on_attach = on_attach}
+  require'lspconfig'.rust_analyzer.setup     { capabilities = capabilities, flags = flags, on_attach = on_attach}
   require'lspconfig'.sqls.setup              { capabilities = capabilities, flags = flags, on_attach = on_attach}
   require'lspconfig'.svelte.setup            { capabilities = capabilities, flags = flags, on_attach = on_attach}
   require'lspconfig'.tailwindcss.setup       { capabilities = capabilities, flags = flags, on_attach = on_attach}
@@ -500,6 +501,7 @@ nnoremap <Leader>g<C-p> :Git push -u origin HEAD<CR>
 nnoremap <Leader>gP :Git push<CR>
 nnoremap <Leader>gp :Git pull<CR>
 nnoremap <Leader>gR :Git pull --rebase<CR>
+nnoremap <Leader>gU :Git pull upstream HEAD<CR>
 nnoremap <Leader>gSP :Git stash push<CR>
 nnoremap <Leader>gSp :Git stash push -m "
 nnoremap <Leader>gSl :Git stash list<CR>

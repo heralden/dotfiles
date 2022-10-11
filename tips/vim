@@ -34,3 +34,6 @@ g+ # go forward in time
 
 # vim-unimpaired mapping for toggling cursorline and cursorcolumn highlighting
 =ox
+
+# Resolve incorrect filetype resulting in loads of incorrect errors
+:LspStop

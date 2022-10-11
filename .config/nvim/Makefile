@@ -1,5 +1,8 @@
-install-packages:
+install-packages-xbps:
 	sudo xbps-install cargo gopls nodejs python3-pip racket ripgrep
+
+install-packages-brew:
+	brew install python neovim rust nodejs ripgrep
 
 setup: export TFLINT_INSTALL_PATH = $(HOME)/bin
 setup:

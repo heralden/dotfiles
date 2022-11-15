@@ -41,4 +41,4 @@ setup-tex:
 setup-racket:
 	sudo raco pkg install racket-langserver
 
-.PHONY: install-packages setup setup-tex setup-racket
+.PHONY: *

@@ -119,7 +119,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |  F18   |BriDn | Vol- | End  | PgDn |NxtTab|      |      |  |      |      | BegLn| EndLn|   (  |   )  |   =  |   +    |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |      |      |      |      |  |      |      |      |      |      |
+ *                        |      |      |      |      |      |  |      | Tab  |      |      |      |
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
@@ -127,7 +127,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_F16  , KC_F13 , KC_MUTE, KC_MPRV, KC_MNXT, KC_MPLY ,                                         KC_MPLY, KC_LCBR,KC_RCBR, KC_LBRC,KC_RBRC, NOR_AA,
      KC_F17  , KC_BRMU, KC_VOLU, KC_HOME, KC_PGUP, PREV_TAB,                                         KC_LEFT, KC_DOWN, KC_UP , KC_RGHT,NOR_OE , NOR_AE,
      KC_F18  , KC_BRMD, KC_VOLD, KC_END , KC_PGDN, NEXT_TAB, KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS,MACBEGLN,MACENDLN,KC_LPRN, KC_RPRN,KC_EQL , KC_PLUS,
-                                 KC_TRNS, KC_TRNS, KC_TRNS , KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+                                 KC_TRNS, KC_TRNS, KC_TRNS , KC_TRNS, KC_TRNS,     KC_TRNS, KC_TAB , KC_TRNS, KC_TRNS, KC_TRNS
     ),
 
 /*

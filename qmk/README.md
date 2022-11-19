@@ -4,3 +4,5 @@ Requires `python3-pip`. To avoid using `sudo` when flashing firmware, [add udev 
 make setup
 make flash-left # or flash-right
 ```
+
+Double-tap the reset switch on the split you used the command to flash.

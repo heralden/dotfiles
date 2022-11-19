@@ -175,7 +175,6 @@ call plug#end()
 " TSInstall bash c c_sharp clojure comment commonlisp cpp css dart dockerfile elixir erlang fennel go gomod gowork graphql html http java javascript jsdoc json julia kotlin latex lua make nix ocaml perl php python r regex ruby rust scala scss sparql svelte toml tsx turtle typescript vim vue yaml
 lua << EOF
   require'nvim-treesitter.configs'.setup {
-    -- One of "all", "maintained" (parsers with maintainers), or a list of languages
     ensure_installed = { "bash", "c", "c_sharp", "clojure", "comment", "commonlisp", "cpp", "css", "dart", "dockerfile", "elixir", "erlang", "fennel", "go", "gomod", "gowork", "graphql", "html", "http", "java", "javascript", "jsdoc", "json", "julia", "kotlin", "latex", "lua", "make", "nix", "ocaml", "perl", "php", "python", "r", "regex", "ruby", "rust", "scala", "scss", "sparql", "svelte", "toml", "tsx", "turtle", "typescript", "vim", "vue", "yaml" },
 
     -- Install languages synchronously (only applied to `ensure_installed`)
@@ -246,7 +245,7 @@ lua << EOF
   ----------------------
   -- Setup lspconfig. --
   ----------------------
-  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  local capabilities = require('cmp_nvim_lsp').default_capabilities()
   local flags = { debounce_text_changes = 150 }
 
   -- Use an on_attach function to only map the following keys after the language server attaches to the current buffer.

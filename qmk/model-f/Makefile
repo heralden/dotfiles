@@ -5,6 +5,7 @@ python_version = 3.8.14
 $(keymap_dir):
 	mkdir $(keymap_dir)
 	ln -s $(PWD)/keymap.c $(keymap_dir)
+	ln -s $(PWD)/rules.mk $(keymap_dir)
 
 setup:
 	pyenv install --skip-existing $(python_version)

@@ -44,7 +44,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_FN] = LAYOUT_ansi_hhkb_split_shift_split_backspace(
         _______, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12, _______, KC_CAPS,     KC_HOME,   KC_UP,   KC_PGUP,
-        _______,    KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_LBRC, KC_RBRC, KC_NO,            PREV_TAB,  KC_NO,   NEXT_TAB,
+        _______,    KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_LCBR, KC_RCBR, KC_NO,            PREV_TAB,  KC_NO,   NEXT_TAB,
         _______,      KC_NO, KC_NO, KC_NO, KC_NO, PREV_TAB, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_NO, KC_NO, KC_NO,           KC_END,    KC_DOWN, KC_PGDN,
         _______,         KC_NO, KC_NO, KC_NO, KC_NO, NEXT_TAB, KC_NO, KC_NO, KC_PSCR, KC_SLCK, KC_PAUS, _______, _______,     KC_INS,    KC_VOLU, KC_DEL,
         _______, _______, _______,                             MO(_FN2),                       _______, _______, _______,     KC_MUTE,   KC_VOLD, KC_MPLY
@@ -56,6 +56,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,             _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______,
         _______, _______, _______,                             _______,                                       _______, _______, _______,          _______, _______, _______
     )
+};
+
+const key_override_t left_lisp_paren_key = ko_make_basic(MOD_MASK_SHIFT, KC_LPRN, KC_LBRC);
+const key_override_t right_lisp_paren_key = ko_make_basic(MOD_MASK_SHIFT, KC_RPRN, KC_RBRC);
+
+const key_override_t **key_overrides = (const key_override_t *[]){
+    &left_lisp_paren_key,
+    &right_lisp_paren_key,
+    NULL
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {

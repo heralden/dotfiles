@@ -311,6 +311,18 @@ autocmd FileType mail lua require('cmp').setup.buffer {
 " telescope mappings
 lua << EOF
 require('telescope').setup{
+  pickers = {
+    find_files = {
+      hidden = true,
+      file_ignore_patterns = { 'node_modules', '.git', 'target', 'resources/public' },
+    },
+    live_grep = {
+      file_ignore_patterns = { 'node_modules', '.git', 'target', 'resources/public' },
+      additional_args = function(opts)
+        return {"--hidden"}
+      end
+    }
+  },
   defaults = {
     mappings = {
       i = {

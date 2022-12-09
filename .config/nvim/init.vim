@@ -117,7 +117,8 @@ call plug#begin()
   Plug 'bdlangton/close-buffers.vim'
   Plug 'junegunn/vim-easy-align'
   Plug 'ntpeters/vim-better-whitespace'
-  Plug 'jiangmiao/auto-pairs', { 'tag': 'v2.0.0' }
+  Plug 'windwp/nvim-autopairs'
+  " Plug 'jiangmiao/auto-pairs', { 'tag': 'v2.0.0' }
   " JavaScript
   Plug 'kchmck/vim-coffee-script'
   Plug 'prettier/vim-prettier', {
@@ -336,27 +337,31 @@ EOF
 
 set background=light
 colorscheme PaperColor
-" Make papercolor look better with treesitter
-highlight TSPunctDelimiter ctermfg=36 guifg=#00ad7f
-highlight TSPunctSpecial ctermfg=23 guifg=#004e3d
-highlight TSTagDelimiter ctermfg=23 guifg=#004257
-highlight TSConstBuiltin ctermfg=238 guifg=#4c3d3d
-highlight TSConstructor ctermfg=238 cterm=bold gui=bold guifg=#533636
-highlight TSVariableBuiltin ctermfg=237 guifg=#5d2d2d
-highlight TSStringRegex ctermfg=94 guifg=#855f00
-highlight TSLiteral ctermfg=64 guifg=#508500
-highlight TSMethod ctermfg=237 cterm=italic gui=italic guifg=#573232
-highlight TSField ctermfg=24 guifg=#004785
-highlight TSProperty ctermfg=18 guifg=#002885
-highlight TSParameterReference ctermfg=24 guifg=#005685
-highlight TSAttribute ctermfg=24 guifg=#185d95
-highlight TSTag ctermfg=60 guifg=#305b7e
-highlight TSKeywordFunction ctermfg=240 guifg=#40596d
-highlight TSKeywordOperator ctermfg=45 guifg=#1ac9ff
-highlight TSTypeBuiltin ctermfg=126 guifg=#b0277d
-highlight TSNamespace ctermfg=124 guifg=#b71f1f
-" Lovely pink keywords in Clojure
-highlight TSSymbol ctermfg=162 guifg=#d70087
+" " Make papercolor look better with treesitter
+" " (No longer works since TreeSitter has renamed everything to @x)
+" highlight TSPunctDelimiter ctermfg=36 guifg=#00ad7f
+" highlight TSPunctSpecial ctermfg=23 guifg=#004e3d
+" highlight TSTagDelimiter ctermfg=23 guifg=#004257
+" highlight TSConstBuiltin ctermfg=238 guifg=#4c3d3d
+" highlight TSConstructor ctermfg=238 cterm=bold gui=bold guifg=#533636
+" highlight TSVariableBuiltin ctermfg=237 guifg=#5d2d2d
+" highlight TSStringRegex ctermfg=94 guifg=#855f00
+" highlight TSLiteral ctermfg=64 guifg=#508500
+" highlight TSMethod ctermfg=237 cterm=italic gui=italic guifg=#573232
+" highlight TSField ctermfg=24 guifg=#004785
+" highlight TSProperty ctermfg=18 guifg=#002885
+" highlight TSParameterReference ctermfg=24 guifg=#005685
+" highlight TSAttribute ctermfg=24 guifg=#185d95
+" highlight TSTag ctermfg=60 guifg=#305b7e
+" highlight TSKeywordFunction ctermfg=240 guifg=#40596d
+" highlight TSKeywordOperator ctermfg=45 guifg=#1ac9ff
+" highlight TSTypeBuiltin ctermfg=126 guifg=#b0277d
+" highlight TSNamespace ctermfg=124 guifg=#b71f1f
+" " Lovely pink keywords in Clojure
+" highlight TSSymbol ctermfg=162 guifg=#d70087
+highlight @symbol ctermfg=162 guifg=#d70087
+" " Use TSHighlightCapturesUnderCursor
+
 
 " " Slime
 let g:slime_target = "neovim"
@@ -400,8 +405,11 @@ let g:iced#nrepl#auto#does_switch_session = v:true
 let g:iced_enable_auto_indent = v:false " cljfmt is slow
 
 " auto pairs
-au Filetype clojure let b:AutoPairs = {"\"": "\""}
-au Filetype vim let b:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'", "`":"`", '```':'```', '"""':'"""', "'''":"'''"}
+" au Filetype clojure let b:AutoPairs = {"\"": "\""}
+" au Filetype vim let b:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'", "`":"`", '```':'```', '"""':'"""', "'''":"'''"}
+lua << EOF
+require("nvim-autopairs").setup {}
+EOF
 
 " " Paredit
 " " Do not move closing parenthesis to next line
@@ -457,6 +465,11 @@ let g:ale_linters = {'clojure': ['clj-kondo']}
 " Navigate between linting errors quickly
 nmap <Leader><C-j> <Plug>(ale_next_wrap)
 nmap <Leader><C-k> <Plug>(ale_previous_wrap)
+" Disable for iced_stdout
+let g:ale_pattern_options = {
+\ 'iced_stdout': {'ale_linters': [], 'ale_fixers': []},
+\}
+let g:ale_pattern_options_enabled = 1
 
 " Prettier
 nmap <Leader>P <Plug>(Prettier)

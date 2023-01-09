@@ -26,6 +26,7 @@ set noshowmode "hide ugly INSERT alert
 set nohlsearch
 " set completeopt=
 set completeopt=menu,menuone,noselect "Recommended for nvim-cmp
+set mouse= "useless and stops you from easily copying stuff
 
 " Fuzzy file search
 set path+=**
@@ -315,10 +316,10 @@ require('telescope').setup{
   pickers = {
     find_files = {
       hidden = true,
-      file_ignore_patterns = { 'node_modules', '.git', 'target', 'resources/public' },
+      file_ignore_patterns = { 'node_modules', '.git', 'target', 'resources/public', '.lsp', '.clj-kondo' },
     },
     live_grep = {
-      file_ignore_patterns = { 'node_modules', '.git', 'target', 'resources/public' },
+      file_ignore_patterns = { 'node_modules', '.git', 'target', 'resources/public', '.lsp', '.clj-kondo' },
       additional_args = function(opts)
         return {"--hidden"}
       end
@@ -425,6 +426,7 @@ let g:airline_extensions = [ 'ale', 'branch', 'hunks', 'tabline', 'term', 'tmuxl
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#formatter = 'jsformatter' " show parent directory if filename is index.js
+let g:airline_section_b = "%{airline#util#wrap(airline#extensions#hunks#get_hunks(),100)}%#__accent_bold#%{airline#util#wrap(airline#extensions#branch#get_head(),80)}%#__restore__# %{airline#util#wrap(fnamemodify(getcwd(), ':t'),80)}" " show dirname
 let g:airline_section_y = 0 " do not display file encoding[fileformat]
 let g:airline_theme = 'papercolor'
 let g:tmuxline_powerline_separators = 0

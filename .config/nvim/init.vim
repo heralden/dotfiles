@@ -108,7 +108,6 @@ call plug#begin()
   Plug 'tpope/vim-commentary'
   Plug 'lervag/vimtex'
   Plug 'uosl/vim-slime'
-  Plug 'w0rp/ale'
   Plug 'wellle/targets.vim'
   Plug 'MarcWeber/vim-addon-mw-utils'
   Plug 'tomtom/tlib_vim'
@@ -117,7 +116,7 @@ call plug#begin()
   Plug 'moll/vim-bbye'
   Plug 'bdlangton/close-buffers.vim'
   Plug 'junegunn/vim-easy-align'
-  Plug 'ntpeters/vim-better-whitespace'
+  " Plug 'ntpeters/vim-better-whitespace'
   Plug 'windwp/nvim-autopairs'
   " Plug 'jiangmiao/auto-pairs', { 'tag': 'v2.0.0' }
   " JavaScript
@@ -404,6 +403,10 @@ let g:iced_enable_default_key_mappings = v:true
 let g:iced_default_key_mapping_leader = '<LocalLeader>'
 let g:iced#nrepl#auto#does_switch_session = v:true
 let g:iced_enable_auto_indent = v:false " cljfmt is slow
+call iced#hook#add('connected', {
+      \ 'type': 'command',
+      \ 'exec': 'lua vim.diagnostic.disable(tonumber(vim.api.nvim_command_output("echo bufnr(\"iced_stdout\")")))',
+      \ })
 
 " auto pairs
 " au Filetype clojure let b:AutoPairs = {"\"": "\""}
@@ -422,7 +425,8 @@ let g:paredit_smartjump = 1
 " autocmd BufWritePre *.clj,*.cljs,*.cljc IcedFormatAll | w
 
 " Airline
-let g:airline_extensions = [ 'ale', 'branch', 'hunks', 'tabline', 'term', 'tmuxline' ]
+let g:airline_extensions = [ 'nvimlsp', 'branch', 'hunks', 'tabline', 'term', 'tmuxline' ]
+let g:airline#extensions#nvimlsp#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#formatter = 'jsformatter' " show parent directory if filename is index.js
@@ -460,18 +464,6 @@ map <C-l> <C-w>l
 " Leader mappings
 let mapleader = ";"
 let maplocalleader = "'"
-
-" Ale
-" Set linters
-let g:ale_linters = {'clojure': ['clj-kondo']}
-" Navigate between linting errors quickly
-nmap <Leader><C-j> <Plug>(ale_next_wrap)
-nmap <Leader><C-k> <Plug>(ale_previous_wrap)
-" Disable for iced_stdout
-let g:ale_pattern_options = {
-\ 'iced_stdout': {'ale_linters': [], 'ale_fixers': []},
-\}
-let g:ale_pattern_options_enabled = 1
 
 " Prettier
 nmap <Leader>P <Plug>(Prettier)

@@ -644,3 +644,7 @@ augroup mail_trailing_whitespace " {
     autocmd FileType mail setlocal formatoptions+=w
     autocmd FileType mail setlocal textwidth=80
 augroup END " }
+
+" NERDTree fix
+" https://stackoverflow.com/questions/73681802/how-to-restore-the-original-size-after-using-the-nerdtree-menu-in-vim
+let g:NERDTreeMinimalMenu=1

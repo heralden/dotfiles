@@ -403,10 +403,14 @@ let g:iced_enable_default_key_mappings = v:true
 let g:iced_default_key_mapping_leader = '<LocalLeader>'
 let g:iced#nrepl#auto#does_switch_session = v:true
 let g:iced_enable_auto_indent = v:false " cljfmt is slow
-call iced#hook#add('connected', {
-      \ 'type': 'command',
-      \ 'exec': 'lua vim.diagnostic.disable(tonumber(vim.api.nvim_command_output("echo bufnr(\"iced_stdout\")")))',
-      \ })
+lua << EOF
+vim.fn['iced#hook#add']('connected', {
+  type = "function",
+  exec = function()
+    vim.diagnostic.disable(vim.fn.bufnr("iced_stdout"))
+  end
+})
+EOF
 
 " auto pairs
 " au Filetype clojure let b:AutoPairs = {"\"": "\""}
@@ -500,6 +504,7 @@ let g:tex_flavor = 'latex'
 
 " Iced
 nnoremap <LocalLeader><M-'> :IcedStartCljsRepl figwheel-sidecar<CR>
+nnoremap <LocalLeader><C-'> :IcedStartCljsRepl figwheel-main dev<CR>
 nmap <LocalLeader>er <Plug>(iced_eval_and_replace)<Plug>(sexp_inner_element)
 
 " Fugitive

@@ -49,6 +49,10 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 
+" Wrapping with `gq` (does not work)
+set textwidth=80
+set formatoptions+=c
+
 " Mail
 autocmd FileType mail setl linebreak tw=0
 
@@ -149,8 +153,9 @@ call plug#begin()
   Plug 'guns/vim-sexp', {'for': 'clojure'}
   Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
   Plug 'liquidz/vim-iced', {'for': 'clojure'}
-  Plug 'liquidz/vim-iced-function-list', {'for': 'clojure', 'on': 'IcedBrowseFunction'}
+  Plug 'liquidz/vim-iced-function-list', {'for': 'clojure'}
   Plug 'liquidz/vim-iced-kaocha', {'for': 'clojure'}
+  Plug 'liquidz/vim-iced-telescope-selector', {'for': 'clojure'}
   " Plug 'junegunn/fzf'
   " " (Completion plugin option 1)
   Plug 'roxma/nvim-completion-manager', { 'for': 'reason' }
@@ -403,6 +408,7 @@ let g:iced_enable_default_key_mappings = v:true
 let g:iced_default_key_mapping_leader = '<LocalLeader>'
 let g:iced#nrepl#auto#does_switch_session = v:true
 let g:iced_enable_auto_indent = v:false " cljfmt is slow
+let g:iced#selector#search_order = ['telescope']
 lua << EOF
 vim.fn['iced#hook#add']('connected', {
   type = "function",
@@ -416,8 +422,13 @@ EOF
 " au Filetype clojure let b:AutoPairs = {"\"": "\""}
 " au Filetype vim let b:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'", "`":"`", '```':'```', '"""':'"""', "'''":"'''"}
 lua << EOF
-require("nvim-autopairs").setup {}
+require('nvim-autopairs').setup({
+  disable_filetype = { "clojure" },
+})
 EOF
+
+" vim-sexp
+let g:sexp_enable_insert_mode_mappings = 0
 
 " " Paredit
 " " Do not move closing parenthesis to next line
@@ -506,6 +517,11 @@ let g:tex_flavor = 'latex'
 nnoremap <LocalLeader><M-'> :IcedStartCljsRepl figwheel-sidecar<CR>
 nnoremap <LocalLeader><C-'> :IcedStartCljsRepl figwheel-main dev<CR>
 nmap <LocalLeader>er <Plug>(iced_eval_and_replace)<Plug>(sexp_inner_element)
+
+nmap <LocalLeader>e>>    :IcedEval (clojure.core/tap> *1)   <CR>
+nmap <LocalLeader>e>v    :IcedEval (dev/tap>ves *1)         <CR>
+nmap <LocalLeader>e<C-r> :IcedEval (integrant.repl/reset)   <CR>
+nmap <LocalLeader>eC     :IcedEval (portal.api/clear)       <CR>
 
 " Fugitive
 nnoremap <Leader>gs :belowright :Git<CR>
@@ -601,7 +617,12 @@ nnoremap <leader>fq <cmd>Telescope quickfix<cr>
 nnoremap <leader>fj <cmd>Telescope jumplist<cr>
 nnoremap <leader>fr <cmd>Telescope registers<cr>
 nnoremap <leader>fl <cmd>Telescope current_buffer_fuzzy_find<cr>
-nnoremap <leader>ft <cmd>Telescope treesitter<cr>
+" nnoremap <leader>ft <cmd>Telescope treesitter<cr>
+nnoremap <leader>ft :lua require'telescope.builtin'.treesitter{}<cr>
+nnoremap <leader>fvc :lua require'telescope.builtin'.git_bcommits{}<cr>
+nnoremap <leader>fvb :lua require'telescope.builtin'.git_branches{}<cr>
+nnoremap <leader>fvs :lua require'telescope.builtin'.git_status{}<cr>
+nnoremap <leader>fvS :lua require'telescope.builtin'.git_stash{}<cr>
 
 " Quickly open terminal in directory of file
 " nnoremap <Leader>C :terminal $SHELL -c "cd `dirname %`; $SHELL"<CR>

@@ -178,10 +178,10 @@ call plug#begin()
 call plug#end()
 
 " Treesitter
-" TSInstall bash c c_sharp clojure comment commonlisp cpp css dart dockerfile elixir erlang fennel go gomod gowork graphql html http java javascript jsdoc json julia kotlin latex lua make nix ocaml perl php python r regex ruby rust scala scss sparql svelte toml tsx turtle typescript vim vue yaml
+" TSInstall bash c c_sharp clojure comment commonlisp cpp css dart dockerfile elixir erlang fennel go gomod gowork graphql html http java javascript jsdoc json julia kotlin latex lua make nix ocaml perl php python r regex ruby rust scala scss sparql svelte terraform toml tsx turtle typescript vim vue yaml
 lua << EOF
   require'nvim-treesitter.configs'.setup {
-    ensure_installed = { "bash", "c", "c_sharp", "clojure", "comment", "commonlisp", "cpp", "css", "dart", "dockerfile", "elixir", "erlang", "fennel", "go", "gomod", "gowork", "graphql", "html", "http", "java", "javascript", "jsdoc", "json", "julia", "kotlin", "latex", "lua", "make", "nix", "ocaml", "perl", "php", "python", "r", "regex", "ruby", "rust", "scala", "scss", "sparql", "svelte", "toml", "tsx", "turtle", "typescript", "vim", "vue", "yaml" },
+    ensure_installed = { "bash", "c", "c_sharp", "clojure", "comment", "commonlisp", "cpp", "css", "dart", "dockerfile", "elixir", "erlang", "fennel", "go", "gomod", "gowork", "graphql", "html", "http", "java", "javascript", "jsdoc", "json", "julia", "kotlin", "latex", "lua", "make", "nix", "ocaml", "perl", "php", "python", "r", "regex", "ruby", "rust", "scala", "scss", "sparql", "svelte", "terraform", "toml", "tsx", "turtle", "typescript", "vim", "vue", "yaml" },
 
     -- Install languages synchronously (only applied to `ensure_installed`)
     sync_install = false,
@@ -301,7 +301,7 @@ lua << EOF
   require'lspconfig'.svelte.setup            { capabilities = capabilities, flags = flags, on_attach = on_attach}
   require'lspconfig'.tailwindcss.setup       { capabilities = capabilities, flags = flags, on_attach = on_attach}
   require'lspconfig'.texlab.setup            { capabilities = capabilities, flags = flags, on_attach = on_attach}
-  require'lspconfig'.tflint.setup            { capabilities = capabilities, flags = flags, on_attach = on_attach}
+  require'lspconfig'.terraformls.setup       { capabilities = capabilities, flags = flags, on_attach = on_attach}
   require'lspconfig'.tsserver.setup          { capabilities = capabilities, flags = flags, on_attach = on_attach}
   require'lspconfig'.vimls.setup             { capabilities = capabilities, flags = flags, on_attach = on_attach}
   require'lspconfig'.vuels.setup             { capabilities = capabilities, flags = flags, on_attach = on_attach}
@@ -535,7 +535,7 @@ nnoremap <Leader>gm :Git merge
 nnoremap <Leader>gr :Git rebase
 nnoremap <Leader>gc :Git checkout 
 nnoremap <Leader>gB :Git branch 
-nnoremap <Leader>gw :Git switch
+nnoremap <Leader>gw :Git switch -
 nnoremap <Leader>g<C-p> :Git push -u origin HEAD<CR>
 nnoremap <Leader>gP :Git push<CR>
 nnoremap <Leader>gp :Git pull<CR>

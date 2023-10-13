@@ -2,9 +2,8 @@ install-packages-xbps:
 	sudo xbps-install cargo gopls nodejs python3-pip racket ripgrep
 
 install-packages-brew:
-	brew install python neovim rust nodejs ripgrep
+	brew install python neovim rust nodejs ripgrep hashicorp/tap/terraform-ls
 
-setup: export TFLINT_INSTALL_PATH = $(HOME)/bin
 setup:
 	npm install --global \
 		bash-language-server \
@@ -32,8 +31,6 @@ setup:
 	rm install-clj-kondo
 
 	python3 -m pip install --user neovim
-
-	curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
 
 setup-tex:
 	cargo install --git https://github.com/latex-lsp/texlab.git --locked
